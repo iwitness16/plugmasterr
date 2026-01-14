@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-open-sans);
+  --font-display: var(--font-montserrat);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-open-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.font-display {
+  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Custom Yellow-Green Color */
+.text-yellow-green {
+  color: #efff00;
+}
+
+.bg-yellow-green {
+  background-color: #efff00;
+}
+
+.border-yellow-green {
+  border-color: #efff00;
+}
+
+.hover\:bg-yellow-green:hover {
+  background-color: #efff00;
+}
+
+.hover\:text-yellow-green:hover {
+  color: #ffea00;
+}
+
+/* Additional utility classes for yellow-green */
+.text-yellow-green-hover:hover {
+  color: #ffea00;
+}
+
+.bg-yellow-green-hover:hover {
+  background-color: #ffea00;
+}
+
+/* Watermark overlay for images */
+.watermarked-image {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.watermarked-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.watermarked-image::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 70% !important;
+  height: 70% !important;
+  background-image: url('/images/watermark.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  opacity: 0.7 !important;
+  pointer-events: none !important;
+  z-index: 999 !important;
+}
+
+/* Product image hover effect */
+.hover-image-container {
+  position: relative;
+}
+
+.hover-image-container:hover .default-image {
+  opacity: 0 !important;
+  z-index: 1 !important;
+}
+
+.hover-image-container .hover-image {
+  z-index: 2 !important;
+}
+
+.hover-image-container:hover .hover-image {
+  opacity: 1 !important;
+  z-index: 2 !important;
+}

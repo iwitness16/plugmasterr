@@ -1,0 +1,487 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { ShoppingCart, ChevronUp, Minus, Plus, X } from 'lucide-react';
+import Link from 'next/link';
+import { getCartItems, updateCartItem, removeFromCart, clearCart, type CartItem } from '@/lib/cart';
+import { submitOrder } from '@/lib/firestore';
+import { useRouter } from 'next/navigation';
+import { sendOrderEmail } from '@/lib/email';
+
+export default function CartPage() {
+  const router = useRouter();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Load cart items from localStorage
+  useEffect(() => {
+    const loadCart = () => {
+      const items = getCartItems();
+      setCartItems(items);
+    };
+
+    loadCart();
+
+    // Listen for cart updates
+    window.addEventListener('cartUpdated', loadCart);
+    return () => window.removeEventListener('cartUpdated', loadCart);
+  }, []);
+
+  // Calculate totals
+  const selectedItems = cartItems.filter(item => item.selected);
+  const selectedCount = selectedItems.length;
+  const totalQuantity = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  
+  // Calculate discount based on quantity
+  let discount = 0;
+  let discountText = '';
+  if (totalQuantity >= 2 && totalQuantity <= 3) {
+    discount = totalQuantity * 10;
+    discountText = '2-3, $10 each card reduce';
+  } else if (totalQuantity >= 4 && totalQuantity <= 9) {
+    discount = totalQuantity * 20;
+    discountText = '4-9, $20 each card reduce';
+  } else if (totalQuantity >= 10) {
+    discount = totalQuantity * 25;
+    discountText = '10+, $25 each card reduce';
+  }
+  
+  const originalAmount = subtotal + discount;
+  const finalAmount = subtotal;
+
+  // Handle quantity change
+  const handleQuantityChange = (id: string, change: number) => {
+    const item = cartItems.find(i => i.id === id);
+    if (item) {
+      const newQuantity = Math.max(1, item.quantity + change);
+      updateCartItem(id, { quantity: newQuantity });
+      setCartItems(items =>
+        items.map(i => i.id === id ? { ...i, quantity: newQuantity } : i)
+      );
+    }
+  };
+
+  // Handle item selection
+  const handleSelectItem = (id: string) => {
+    const item = cartItems.find(i => i.id === id);
+    if (item) {
+      const newSelected = !item.selected;
+      updateCartItem(id, { selected: newSelected });
+      setCartItems(items =>
+        items.map(i => i.id === id ? { ...i, selected: newSelected } : i)
+      );
+    }
+  };
+
+  // Handle select all
+  const handleSelectAll = () => {
+    const allSelected = cartItems.every(item => item.selected);
+    const newSelected = !allSelected;
+    cartItems.forEach(item => {
+      updateCartItem(item.id, { selected: newSelected });
+    });
+    setCartItems(items =>
+      items.map(item => ({ ...item, selected: newSelected }))
+    );
+  };
+
+  // Handle delete item
+  const handleDeleteItem = (id: string) => {
+    removeFromCart(id);
+    setCartItems(items => items.filter(item => item.id !== id));
+  };
+
+  // Handle batch delete
+  const handleBatchDelete = () => {
+    const selectedIds = cartItems.filter(item => item.selected).map(item => item.id);
+    selectedIds.forEach(id => removeFromCart(id));
+    setCartItems(items => items.filter(item => !item.selected));
+  };
+
+  // Handle checkout
+  const handleCheckout = async () => {
+    const selectedItems = cartItems.filter(item => item.selected);
+    
+    if (selectedItems.length === 0) {
+      setSubmitError('Please select at least one item to checkout');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    try {
+      // Import image compression utility
+      const { convertFileToBase64 } = await import('@/lib/imageUtils');
+      
+      // Submit each selected item as a separate order
+      const orderPromises = selectedItems.map(async (item) => {
+        const basePrice = 100;
+        const totalPrice = basePrice * item.quantity;
+
+        // Compress images if they exist and are base64 strings
+        let photo = item.formData.photo;
+        let signature = item.formData.signature;
+        
+        // If photo is a large base64 string, try to compress it
+        if (photo && photo.length > 500000) { // ~500KB
+          try {
+            // If it's a data URL, we can't compress it further without the original file
+            // So we'll truncate or skip it with a note
+            photo = photo.substring(0, 500000); // Truncate to ~500KB
+            console.warn('Photo was too large, truncated for storage');
+          } catch (e) {
+            console.error('Error processing photo:', e);
+            photo = null;
+          }
+        }
+        
+        if (signature && signature.length > 500000) {
+          try {
+            signature = signature.substring(0, 500000);
+            console.warn('Signature was too large, truncated for storage');
+          } catch (e) {
+            console.error('Error processing signature:', e);
+            signature = null;
+          }
+        }
+
+        const orderData = {
+          product: item.product,
+          quantity: item.quantity,
+          totalPrice: totalPrice,
+          ...item.formData,
+          photo: photo,
+          signature: signature,
+        };
+
+        const orderId = await submitOrder(orderData);
+        
+        // Send email notification
+        const orderDate = new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        });
+        
+        await sendOrderEmail({
+          ...orderData,
+          orderId,
+          orderDate,
+        });
+        
+        return orderId;
+      });
+
+      await Promise.all(orderPromises);
+
+      // Remove submitted items from cart
+      const submittedIds = selectedItems.map(item => item.id);
+      submittedIds.forEach(id => removeFromCart(id));
+      setCartItems(items => items.filter(item => !item.selected));
+
+      setSubmitSuccess(true);
+
+      // Reset after showing success message
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        if (cartItems.filter(item => !submittedIds.includes(item.id)).length === 0) {
+          router.push('/');
+        }
+      }, 3000);
+
+    } catch (error: any) {
+      console.error('Error during checkout:', error);
+      setSubmitError(error.message || 'Failed to checkout. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white font-sans">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm z-50 border-b border-white">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-3">
+              <img 
+                src="/images/logo.jpg" 
+                alt="IDMASTER Logo" 
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
+              />
+              <div className="flex flex-col">
+                <div className="text-yellow-green text-xl sm:text-2xl font-display font-bold tracking-tight">
+                  IDMASTER
+                </div>
+                <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV Holograms</div>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex space-x-8">
+              <Link href="/" className="hover:text-yellow-green transition text-sm text-gray-300">HOME</Link>
+              <Link href="/product-info" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT INFO</Link>
+              <Link href="/order" className="hover:text-yellow-green transition text-sm text-gray-300">ORDER</Link>
+              <Link href="/product-list" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="hover:text-yellow-green transition text-sm text-gray-300">USE GUIDE</Link>
+              <Link href="/evaluate" className="hover:text-yellow-green transition text-sm text-gray-300">EVALUATE</Link>
+              <Link href="/faq" className="hover:text-yellow-green transition text-sm text-gray-300">FAQ</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-sm text-gray-300">CONTACT US</Link>
+            </div>
+
+            {/* Cart Icon */}
+            <div className="flex items-center relative">
+              <Link href="/cart">
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 cursor-pointer hover:text-blue-300 transition" />
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+                  </span>
+                )}
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile Horizontal Scroll Menu */}
+          <div className="lg:hidden overflow-x-auto pb-3 hide-scrollbar">
+            <div className="flex space-x-6 min-w-max">
+              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">HOME</Link>
+              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT INFO</Link>
+              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">ORDER</Link>
+              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">EVALUATE</Link>
+              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">FAQ</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">CONTACT US</Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+      {/* Main Content */}
+      <div className="pt-32 sm:pt-40 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Cart Title */}
+          <div className="flex items-center mb-8">
+            <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-gray-800 mr-3" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-black">
+              Cart
+            </h1>
+          </div>
+
+          {/* Success Message */}
+          {submitSuccess && (
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+              <strong className="font-bold">Success! </strong>
+              <span className="block sm:inline">Your orders have been submitted successfully. We'll contact you soon!</span>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {submitError && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+              <strong className="font-bold">Error: </strong>
+              <span className="block sm:inline">{submitError}</span>
+            </div>
+          )}
+
+          {/* Cart Table */}
+          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700 w-12">
+                      <input
+                        type="checkbox"
+                        checked={cartItems.length > 0 && cartItems.every(item => item.selected)}
+                        onChange={handleSelectAll}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                    </th>
+                    <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700">Information</th>
+                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Price</th>
+                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Quantity</th>
+                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Subtotal</th>
+                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Operate</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {cartItems.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="px-4 py-12 text-center text-gray-500">
+                        Your cart is empty
+                      </td>
+                    </tr>
+                  ) : (
+                    cartItems.map((item) => (
+                      <tr key={item.id} className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <input
+                            type="checkbox"
+                            checked={item.selected}
+                            onChange={() => handleSelectItem(item.id)}
+                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                          />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="flex items-center space-x-4">
+                            <div className="watermarked-image w-20 h-16 sm:w-24 sm:h-20 relative">
+                              <img
+                                src={item.image}
+                                alt={item.product}
+                                className="w-full h-full object-contain bg-gray-100 rounded"
+                                onError={(e) => {
+                                  e.currentTarget.src = '/images/idfront.jpg';
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-base sm:text-lg">{item.product}</div>
+                              <div className="text-gray-500 text-sm">{item.formData.firstName} {item.formData.lastName}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-800 font-semibold">
+                          ${item.price}
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="flex items-center justify-center space-x-2">
+                            <button
+                              onClick={() => handleQuantityChange(item.id, -1)}
+                              className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                            >
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-12 text-center font-semibold text-gray-800">{item.quantity}</span>
+                            <button
+                              onClick={() => handleQuantityChange(item.id, 1)}
+                              className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-800 font-semibold">
+                          ${item.price * item.quantity}
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="flex items-center justify-center space-x-2">
+                            <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-sm">
+                              detail
+                            </button>
+                            <button
+                              onClick={() => handleDeleteItem(item.id)}
+                              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-sm"
+                            >
+                              delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Cart Summary and Actions */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
+              {/* Left: Selection and Batch Delete */}
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-700 font-semibold">selected ({selectedCount})</span>
+                <button
+                  onClick={handleBatchDelete}
+                  disabled={selectedCount === 0}
+                  className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                >
+                  Batch Delete
+                </button>
+              </div>
+
+              {/* Center: Amount and Discount */}
+              <div className="flex flex-col items-center lg:items-center space-y-2">
+                <div className="text-gray-700">
+                  <span className="font-semibold">Amount to: </span>
+                  <span className="text-lg font-bold">${originalAmount}</span>
+                </div>
+                {discount > 0 && (
+                  <div className="text-gray-700">
+                    <span className="font-semibold">Discounted: </span>
+                    <span className="text-lg font-bold text-red-600">${discount}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Right: Final Amount and Discount Info */}
+              <div className="flex flex-col items-end lg:items-end space-y-2">
+                <div className="text-gray-700">
+                  <span className="font-semibold">Meet: </span>
+                  <span className="text-lg font-bold text-red-600">${finalAmount}</span>
+                </div>
+                {discountText && (
+                  <div className="text-sm text-gray-500">{discountText}</div>
+                )}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/product-list"
+                className="flex-1 px-6 py-3 border-2 border-red-500 text-red-500 rounded-lg font-semibold hover:bg-red-50 transition text-center"
+              >
+                Continue adding
+              </Link>
+              <button
+                onClick={handleCheckout}
+                disabled={selectedCount === 0 || isSubmitting}
+                className="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Processing...' : 'Checkout'}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Support Buttons */}
+      <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
+        <button 
+          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex flex-col items-center"
+          onClick={() => window.open('https://wa.me/16266659178', '_blank')}
+        >
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span className="text-xs mt-1">Online Service</span>
+        </button>
+        <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <ChevronUp className="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
