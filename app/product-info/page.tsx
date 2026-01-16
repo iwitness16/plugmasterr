@@ -20,7 +20,7 @@ export default function ProductInfoPage() {
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-xl sm:text-2xl font-display font-bold tracking-tight">
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
                   IDMASTER
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
@@ -29,14 +29,14 @@ export default function ProductInfoPage() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8">
-              <Link href="/" className="hover:text-yellow-green transition text-sm text-gray-300">HOME</Link>
-              <Link href="/product-info" className="text-yellow-green hover:text-yellow-green transition text-sm border-b-2 border-yellow-green pb-1">PRODUCT INFO</Link>
-              <Link href="/order" className="hover:text-yellow-green transition text-sm text-gray-300">ORDER</Link>
-              <Link href="/product-list" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="hover:text-yellow-green transition text-sm text-gray-300">USE GUIDE</Link>
-              <Link href="/evaluate" className="hover:text-yellow-green transition text-sm text-gray-300">EVALUATE</Link>
-              <Link href="/faq" className="hover:text-yellow-green transition text-sm text-gray-300">FAQ</Link>
-              <Link href="/contact-us" className="hover:text-yellow-green transition text-sm text-gray-300">CONTACT US</Link>
+              <Link href="/" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">HOME</Link>
+              <Link href="/product-info" className="text-yellow-green hover:text-yellow-green transition text-xs sm:text-sm border-b-2 border-yellow-green pb-1">PRODUCT INFO</Link>
+              <Link href="/order" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">ORDER</Link>
+              <Link href="/product-list" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">USE GUIDE</Link>
+              <Link href="/evaluate" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">EVALUATE</Link>
+              <Link href="/faq" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">FAQ</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT US</Link>
             </div>
 
             {/* Cart Icon */}
@@ -50,14 +50,14 @@ export default function ProductInfoPage() {
           {/* Mobile Horizontal Scroll Menu */}
           <div className="lg:hidden overflow-x-auto pb-3 hide-scrollbar">
             <div className="flex space-x-6 min-w-max">
-              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">HOME</Link>
-              <Link href="/product-info" className="text-yellow-green text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">PRODUCT INFO</Link>
-              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">ORDER</Link>
-              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">USE GUIDE</Link>
-              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">EVALUATE</Link>
-              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">FAQ</Link>
-              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">CONTACT US</Link>
+              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">HOME</Link>
+              <Link href="/product-info" className="text-yellow-green text-xs sm:text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">PRODUCT INFO</Link>
+              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">ORDER</Link>
+              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">EVALUATE</Link>
+              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">FAQ</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT US</Link>
             </div>
           </div>
         </div>
@@ -104,131 +104,30 @@ export default function ProductInfoPage() {
         <div className="max-w-6xl mx-auto space-y-12">
           
           {/* Currently supported state IDs Section */}
-          <section>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-black mb-4 sm:mb-6">
-              Currently supported state IDs
-            </h1>
-
-            {/* Scrolling ID Samples Section - 2 Rows */}
-            <div className="bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 sm:py-8 mb-8 overflow-hidden">
-              {/* First Row - Scrolls Right to Left */}
-              <div className="mb-4 sm:mb-6">
-                <div className="flex scroll-container">
-                  {/* First set of IDs */}
-                  {[...Array(12)].map((_, i) => (
-                    <div key={`id-row1-${i}`} className="flex-shrink-0 mx-2 sm:mx-3 lg:mx-4">
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-40 lg:w-72 lg:h-44 bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200 relative">
-                        <div className="watermarked-image w-full h-full">
-                          <img 
-                            src="/images/idimg.jpg" 
-                            alt={`ID Sample ${i + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {[...Array(12)].map((_, i) => (
-                    <div key={`id-row1-duplicate-${i}`} className="flex-shrink-0 mx-2 sm:mx-3 lg:mx-4">
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-40 lg:w-72 lg:h-44 bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200 relative">
-                        <div className="watermarked-image w-full h-full">
-                          <img 
-                            src="/images/idimg.jpg" 
-                            alt={`ID Sample ${i + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Second Row - Scrolls Left to Right (Reverse) */}
-              <div>
-                <div className="flex scroll-container-reverse">
-                  {/* First set of IDs */}
-                  {[...Array(12)].map((_, i) => (
-                    <div key={`id-row2-${i}`} className="flex-shrink-0 mx-2 sm:mx-3 lg:mx-4">
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-40 lg:w-72 lg:h-44 bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200 relative">
-                        <div className="watermarked-image w-full h-full">
-                          <img 
-                            src="/images/idimg.jpg" 
-                            alt={`ID Sample ${i + 13}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {[...Array(12)].map((_, i) => (
-                    <div key={`id-row2-duplicate-${i}`} className="flex-shrink-0 mx-2 sm:mx-3 lg:mx-4">
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-40 lg:w-72 lg:h-44 bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200 relative">
-                        <div className="watermarked-image w-full h-full">
-                          <img 
-                            src="/images/idimg.jpg" 
-                            alt={`ID Sample ${i + 13}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            {/* Pricing Information - Moved below ID displays */}
-            <div className="mt-6 sm:mt-8">
-              <p className="text-red-600 font-semibold text-sm sm:text-base">
-                Product Price: <span className="font-bold">1, $0 each; 2-3, $10 each; 4-9, $20 each; 10+, $25 each.</span>
-              </p>
-            </div>
-          </section>
+          
 
           {/* Product Features Section */}
           <section>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-black mb-6 sm:mb-8">
               Product Features
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-              {/* Scannable Feature */}
-              <div>
-                <div className="bg-gray-200 h-40 sm:h-48 rounded-lg mb-3 sm:mb-4 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute bottom-2 left-2 bg-black/70 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm">
-                    ID Scanning
+            <div className="grid grid-cols-2 gap-4 sm:gap-8">
+              {[
+                { title: 'Scannable', desc: 'Scan the barcode on the back to obtain fake id card information, which can be verified by most applications, software and systems.', image: '/images/ft1.png' },
+                { title: 'Hologram', desc: 'Each state uses a unique holographic pattern, creating a 3D effect via light reflection/refraction, enhancing fake ID authenticity.', image: '/images/ft2.png' },
+                { title: 'UV mark', desc: 'Using UV or black light, the card will reveal a specific pattern or marking that matches the appearance of a real ID card.', image: '/images/ft3.png' },
+                { title: 'Advanced Technology', desc: 'Anti-counterfeiting, embossing, and laser technologies ensure the card info is fade-resistant and raised, enhancing tactile texture.', image: '/images/ft4.png' },
+                { title: 'Strong durability', desc: 'Fake ID cards are resistant to tearing, water resistance and chemical corrosion.', image: '/images/ft5.png' },
+                { title: 'High Quality', desc: 'Made from premium materials. Bending tests show they are not easily broken.', image: '/images/ft6.png' }
+              ].map((feature, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="h-32 sm:h-40 mb-3 sm:mb-4 flex items-center justify-center">
+                    <img src={feature.image} alt={feature.title} className="max-w-full max-h-full object-contain" />
                   </div>
-                  <div className="text-gray-500 text-xs sm:text-sm">Scannable Image</div>
+                  <h3 className="text-sm sm:text-base font-medium mb-1.5 text-black">{feature.title}</h3>
+                  <p className="text-gray-700 text-xs">{feature.desc}</p>
                 </div>
-                <h3 className="text-lg sm:text-xl font-display font-bold text-black mb-2">Scannable</h3>
-                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
-                  Scan the QR code to obtain the information on the card, including name, address, driver's license number, photo, etc.
-                </p>
-              </div>
-
-              {/* Hologram Feature */}
-              <div>
-                <div className="bg-gray-200 h-40 sm:h-48 rounded-lg mb-3 sm:mb-4 flex items-center justify-center">
-                  <div className="text-gray-500 text-xs sm:text-sm">Hologram Image</div>
-                </div>
-                <h3 className="text-lg sm:text-xl font-display font-bold text-black mb-2">Hologram</h3>
-                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
-                  The card is printed with a hologram of a characteristic pattern, which produces a three-dimensional visual effect through light reflection or refraction.
-                </p>
-              </div>
-
-              {/* UV mark Feature */}
-              <div className="sm:col-span-2 md:col-span-1">
-                <div className="bg-gray-200 h-40 sm:h-48 rounded-lg mb-3 sm:mb-4 flex items-center justify-center">
-                  <div className="text-gray-500 text-xs sm:text-sm">UV Mark Image</div>
-                </div>
-                <h3 className="text-lg sm:text-xl font-display font-bold text-black mb-2">UV mark</h3>
-                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
-                  Using a UV or black light, the cards reveal specific patterns or markings.
-                </p>
-              </div>
+              ))}
             </div>
           </section>
 
@@ -242,8 +141,8 @@ export default function ProductInfoPage() {
                 You can customize the following card information
               </p>
             </div>
-            <div className="bg-gray-200 h-48 sm:h-64 rounded-lg mb-4 sm:mb-6 flex items-center justify-center">
-              <div className="text-gray-500 text-xs sm:text-sm">ID Information Image Placeholder</div>
+            <div className="mb-4 sm:mb-6 flex items-center justify-center">
+              <img src="/images/productinfo.png" alt="ID Information" className="w-full h-auto max-h-96 object-contain" />
             </div>
             <div>
               <p className="text-red-600 text-xs sm:text-sm">
@@ -257,24 +156,28 @@ export default function ProductInfoPage() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-black mb-4 sm:mb-6">
               Shipping Status
             </h2>
-            <p className="text-black text-base sm:text-lg mb-4 sm:mb-6">
-              Currently, you can receive your customized card in about <span className="text-red-600 font-bold">12</span> days at the fastest
-            </p>
-            <div className="bg-gray-200 h-48 sm:h-64 rounded-lg mb-4 sm:mb-6 flex items-center justify-center">
-              <div className="text-gray-500 text-xs sm:text-sm">Shipping Image Placeholder</div>
-            </div>
-            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-              <div className="flex items-start">
-                <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
-                <p className="text-gray-700 text-sm sm:text-base">
-                  <span className="font-semibold">Ordinary production:</span> 4-5 days, free of charge
-                </p>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center mb-4 sm:mb-6">
+              <div className="flex items-center justify-center">
+                <img src="/images/shipping.png" alt="Shipping Status" className="w-full h-auto max-h-96 object-contain" />
               </div>
-              <div className="flex items-start">
-                <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
-                <p className="text-gray-700 text-sm sm:text-base">
-                  <span className="font-semibold">Expedited production:</span> 2-3 days, charge ($20 for 1-2 cards, additional $10 for each subsequent card)
+              <div className="space-y-4">
+                <p className="text-black text-base sm:text-lg">
+                  Currently, you can receive your customized card in about <span className="text-red-600 font-bold">4</span> days at the fastest
                 </p>
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex items-start">
+                    <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
+                    <p className="text-gray-700 text-sm sm:text-base">
+                      <span className="font-semibold">Ordinary production:</span> 1-2 days, free of charge
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
+                    <p className="text-gray-700 text-sm sm:text-base">
+                      <span className="font-semibold">Expedited production:</span> 1-2 days, charge ($20 for 1-2 cards, additional $10 for each subsequent card)
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -288,13 +191,13 @@ export default function ProductInfoPage() {
               <div className="flex items-start">
                 <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
                 <p className="text-gray-700 text-sm sm:text-base">
-                  <span className="font-semibold">Standard shipping:</span> 14-16 days, USD 10
+                  <span className="font-semibold">Standard shipping:</span> 5-7 days, USD 10
                 </p>
               </div>
               <div className="flex items-start">
                 <span className="text-yellow-green text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0">★</span>
                 <p className="text-gray-700 text-sm sm:text-base">
-                  <span className="font-semibold">Express shipping:</span> 7-10 days, USD 30
+                  <span className="font-semibold">Express shipping:</span> 2-4 days, USD 30
                 </p>
               </div>
             </div>
@@ -429,18 +332,18 @@ export default function ProductInfoPage() {
                     <div>
                       <p className="font-semibold mb-2">Card Pricing:</p>
                       <ul className="list-disc list-inside space-y-1 ml-2">
-                        <li>Buy 1 card: $90</li>
-                        <li>Buy 2-3 cards: $160-$240 ($80 per piece)</li>
-                        <li>Buy 4-9 cards: $280-$630 ($70 per piece)</li>
-                        <li>Buy 10+ cards: $650+ ($65 per piece)</li>
+                        <li>Buy 1 card: $100</li>
+                        <li>Buy 2-3 cards: $180-$270 ($90 per piece)</li>
+                        <li>Buy 4-9 cards: $320-$720 ($80 per piece)</li>
+                        <li>Buy 10+ cards: $700+ ($70 per piece)</li>
                       </ul>
                     </div>
                     <div>
                       <p className="font-semibold mb-2">Shipping Information:</p>
                       <p className="mb-2">There are additional charges for shipping, as follows:</p>
                       <ul className="list-disc list-inside space-y-1 ml-2">
-                        <li>Express shipping: 6-8 days, $50</li>
-                        <li>Standard shipping: 10-14 days, $20</li>
+                        <li>Express shipping: 2-4 days, $50</li>
+                        <li>Standard shipping: 5-7 days, $20</li>
                       </ul>
                     </div>
                   </div>
@@ -527,16 +430,16 @@ export default function ProductInfoPage() {
               <div className="space-y-1.5 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
                 <p><span className="font-semibold">Company:</span> IDPLUGMASTER Inc.</p>
                 <p><span className="font-semibold">Address:</span> 548 Market St Suite 96966, San Francisco, CA 94104</p>
-                <p><span className="font-semibold">WhatsApp:</span> 12052185256</p>
-                <p><span className="font-semibold">Telegram:</span> idcardmoss</p>
+                <p><span className="font-semibold">WhatsApp:</span> 6266659178</p>
+                <p><span className="font-semibold">Telegram:</span> ID_Master2</p>
                 <p><span className="font-semibold">Email:</span> orders@idplugmaster.com</p>
                 <div className="flex space-x-3 mt-4">
-                  <a href="#" className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
+                  <a href="https://wa.me/16266659178" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
                   </a>
-                  <a href="#" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+                  <a href="https://t.me/ID_Master2" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121L7.116 13.815l-2.91-.907c-.632-.196-.642-.632.135-.936l11.37-4.364c.526-.194.988.12.817.936z"/>
                     </svg>
@@ -561,13 +464,12 @@ export default function ProductInfoPage() {
       {/* Floating Support Buttons */}
       <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
         <button 
-          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex flex-col items-center"
+          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
           onClick={() => window.open('https://wa.me/16266659178', '_blank')}
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          <span className="text-xs mt-1">Online Service</span>
         </button>
         <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />

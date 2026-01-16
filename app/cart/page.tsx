@@ -219,23 +219,23 @@ export default function CartPage() {
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-xl sm:text-2xl font-display font-bold tracking-tight">
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
                   IDMASTER
                 </div>
-                <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV Holograms</div>
+                <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8">
-              <Link href="/" className="hover:text-yellow-green transition text-sm text-gray-300">HOME</Link>
-              <Link href="/product-info" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT INFO</Link>
-              <Link href="/order" className="hover:text-yellow-green transition text-sm text-gray-300">ORDER</Link>
-              <Link href="/product-list" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="hover:text-yellow-green transition text-sm text-gray-300">USE GUIDE</Link>
-              <Link href="/evaluate" className="hover:text-yellow-green transition text-sm text-gray-300">EVALUATE</Link>
-              <Link href="/faq" className="hover:text-yellow-green transition text-sm text-gray-300">FAQ</Link>
-              <Link href="/contact-us" className="hover:text-yellow-green transition text-sm text-gray-300">CONTACT US</Link>
+              <Link href="/" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">HOME</Link>
+              <Link href="/product-info" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT INFO</Link>
+              <Link href="/order" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">ORDER</Link>
+              <Link href="/product-list" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">USE GUIDE</Link>
+              <Link href="/evaluate" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">EVALUATE</Link>
+              <Link href="/faq" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">FAQ</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT US</Link>
             </div>
 
             {/* Cart Icon */}
@@ -254,14 +254,14 @@ export default function CartPage() {
           {/* Mobile Horizontal Scroll Menu */}
           <div className="lg:hidden overflow-x-auto pb-3 hide-scrollbar">
             <div className="flex space-x-6 min-w-max">
-              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">HOME</Link>
-              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT INFO</Link>
-              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">ORDER</Link>
-              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">USE GUIDE</Link>
-              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">EVALUATE</Link>
-              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">FAQ</Link>
-              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">CONTACT US</Link>
+              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">HOME</Link>
+              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT INFO</Link>
+              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">ORDER</Link>
+              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">EVALUATE</Link>
+              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">FAQ</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT US</Link>
             </div>
           </div>
         </div>
@@ -281,9 +281,9 @@ export default function CartPage() {
       <div className="pt-32 sm:pt-40 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Cart Title */}
-          <div className="flex items-center mb-8">
-            <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-gray-800 mr-3" />
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-black">
+          <div className="flex items-center mb-6 sm:mb-8">
+            <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-gray-800 mr-2 sm:mr-3" />
+            <h1 className="text-xl sm:text-2xl font-display font-semibold text-black">
               Cart
             </h1>
           </div>
@@ -304,13 +304,14 @@ export default function CartPage() {
             </div>
           )}
 
-          {/* Cart Table */}
+          {/* Cart Table - Responsive */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
-            <div className="overflow-x-auto">
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700 w-12">
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 w-12">
                       <input
                         type="checkbox"
                         checked={cartItems.length > 0 && cartItems.every(item => item.selected)}
@@ -318,24 +319,24 @@ export default function CartPage() {
                         className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                       />
                     </th>
-                    <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700">Information</th>
-                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Price</th>
-                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Quantity</th>
-                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Subtotal</th>
-                    <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Operate</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Information</th>
+                    <th className="px-3 sm:px-4 py-3 text-center text-xs sm:text-sm font-medium text-gray-700">Price</th>
+                    <th className="px-3 sm:px-4 py-3 text-center text-xs sm:text-sm font-medium text-gray-700">Quantity</th>
+                    <th className="px-3 sm:px-4 py-3 text-center text-xs sm:text-sm font-medium text-gray-700">Subtotal</th>
+                    <th className="px-3 sm:px-4 py-3 text-center text-xs sm:text-sm font-medium text-gray-700">Operate</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {cartItems.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-4 py-12 text-center text-gray-500">
+                      <td colSpan={6} className="px-4 py-12 text-center text-gray-500 text-xs sm:text-sm">
                         Your cart is empty
                       </td>
                     </tr>
                   ) : (
                     cartItems.map((item) => (
                       <tr key={item.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-4">
+                        <td className="px-3 sm:px-4 py-3">
                           <input
                             type="checkbox"
                             checked={item.selected}
@@ -343,55 +344,55 @@ export default function CartPage() {
                             className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                           />
                         </td>
-                        <td className="px-4 py-4">
-                          <div className="flex items-center space-x-4">
-                            <div className="watermarked-image w-20 h-16 sm:w-24 sm:h-20 relative">
+                        <td className="px-3 sm:px-4 py-3">
+                          <div className="flex items-center space-x-3 sm:space-x-4">
+                            <div className="watermarked-image w-16 h-12 sm:w-20 sm:h-16 relative flex-shrink-0">
                               <img
                                 src={item.image}
                                 alt={item.product}
-                                className="w-full h-full object-contain bg-gray-100 rounded"
+                                className="w-full h-full object-contain rounded"
                                 onError={(e) => {
                                   e.currentTarget.src = '/images/idfront.jpg';
                                 }}
                               />
                             </div>
-                            <div>
-                              <div className="font-semibold text-gray-800 text-base sm:text-lg">{item.product}</div>
-                              <div className="text-gray-500 text-sm">{item.formData.firstName} {item.formData.lastName}</div>
+                            <div className="min-w-0">
+                              <div className="font-medium text-gray-800 text-xs sm:text-sm truncate">{item.product}</div>
+                              <div className="text-gray-500 text-xs">{item.formData.firstName} {item.formData.lastName}</div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-center text-gray-800 font-semibold">
+                        <td className="px-3 sm:px-4 py-3 text-center text-gray-800 font-medium text-xs sm:text-sm">
                           ${item.price}
                         </td>
-                        <td className="px-4 py-4">
+                        <td className="px-3 sm:px-4 py-3">
                           <div className="flex items-center justify-center space-x-2">
                             <button
                               onClick={() => handleQuantityChange(item.id, -1)}
-                              className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
                             >
-                              <Minus className="w-4 h-4" />
+                              <Minus className="w-3 h-3 sm:w-4 sm:h-4" />
                             </button>
-                            <span className="w-12 text-center font-semibold text-gray-800">{item.quantity}</span>
+                            <span className="w-10 sm:w-12 text-center font-medium text-gray-800 text-xs sm:text-sm">{item.quantity}</span>
                             <button
                               onClick={() => handleQuantityChange(item.id, 1)}
-                              className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
                             >
-                              <Plus className="w-4 h-4" />
+                              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
                             </button>
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-center text-gray-800 font-semibold">
+                        <td className="px-3 sm:px-4 py-3 text-center text-gray-800 font-medium text-xs sm:text-sm">
                           ${item.price * item.quantity}
                         </td>
-                        <td className="px-4 py-4">
-                          <div className="flex items-center justify-center space-x-2">
-                            <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-sm">
+                        <td className="px-3 sm:px-4 py-3">
+                          <div className="flex items-center justify-center space-x-1 sm:space-x-2">
+                            <button className="px-2 sm:px-4 py-1.5 sm:py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-xs sm:text-sm">
                               detail
                             </button>
                             <button
                               onClick={() => handleDeleteItem(item.id)}
-                              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-sm"
+                              className="px-2 sm:px-4 py-1.5 sm:py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-xs sm:text-sm"
                             >
                               delete
                             </button>
@@ -403,61 +404,135 @@ export default function CartPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile Card View */}
+            <div className="md:hidden space-y-4 p-4">
+              {cartItems.length === 0 ? (
+                <div className="text-center py-12 text-gray-500 text-xs sm:text-sm">
+                  Your cart is empty
+                </div>
+              ) : (
+                cartItems.map((item) => (
+                  <div key={item.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div className="flex items-start space-x-3 mb-3">
+                      <input
+                        type="checkbox"
+                        checked={item.selected}
+                        onChange={() => handleSelectItem(item.id)}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1"
+                      />
+                      <div className="watermarked-image w-20 h-16 relative flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.product}
+                          className="w-full h-full object-contain rounded"
+                          onError={(e) => {
+                            e.currentTarget.src = '/images/idfront.jpg';
+                          }}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-gray-800 text-xs sm:text-sm mb-1">{item.product}</div>
+                        <div className="text-gray-500 text-xs">{item.formData.firstName} {item.formData.lastName}</div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 mb-3 text-xs sm:text-sm">
+                      <div>
+                        <span className="text-gray-500">Price: </span>
+                        <span className="font-medium text-gray-800">${item.price}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Subtotal: </span>
+                        <span className="font-medium text-gray-800">${item.price * item.quantity}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => handleQuantityChange(item.id, -1)}
+                          className="w-7 h-7 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-10 text-center font-medium text-gray-800 text-xs">{item.quantity}</span>
+                        <button
+                          onClick={() => handleQuantityChange(item.id, 1)}
+                          className="w-7 h-7 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-100 transition"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+                      <div className="flex space-x-2">
+                        <button className="px-3 py-1.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-xs">
+                          detail
+                        </button>
+                        <button
+                          onClick={() => handleDeleteItem(item.id)}
+                          className="px-3 py-1.5 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-xs"
+                        >
+                          delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
 
           {/* Cart Summary and Actions */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
+          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Left: Selection and Batch Delete */}
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-700 font-semibold">selected ({selectedCount})</span>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                <span className="text-gray-700 font-medium text-xs sm:text-sm">selected ({selectedCount})</span>
                 <button
                   onClick={handleBatchDelete}
                   disabled={selectedCount === 0}
-                  className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
                 >
                   Batch Delete
                 </button>
               </div>
 
               {/* Center: Amount and Discount */}
-              <div className="flex flex-col items-center lg:items-center space-y-2">
-                <div className="text-gray-700">
-                  <span className="font-semibold">Amount to: </span>
-                  <span className="text-lg font-bold">${originalAmount}</span>
+              <div className="flex flex-col items-start sm:items-center lg:items-center space-y-1.5 sm:space-y-2">
+                <div className="text-gray-700 text-xs sm:text-sm">
+                  <span className="font-medium">Amount to: </span>
+                  <span className="text-sm sm:text-base font-semibold">${originalAmount}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="text-gray-700">
-                    <span className="font-semibold">Discounted: </span>
-                    <span className="text-lg font-bold text-red-600">${discount}</span>
+                  <div className="text-gray-700 text-xs sm:text-sm">
+                    <span className="font-medium">Discounted: </span>
+                    <span className="text-sm sm:text-base font-semibold text-red-600">${discount}</span>
                   </div>
                 )}
               </div>
 
               {/* Right: Final Amount and Discount Info */}
-              <div className="flex flex-col items-end lg:items-end space-y-2">
-                <div className="text-gray-700">
-                  <span className="font-semibold">Meet: </span>
-                  <span className="text-lg font-bold text-red-600">${finalAmount}</span>
+              <div className="flex flex-col items-start sm:items-end lg:items-end space-y-1.5 sm:space-y-2">
+                <div className="text-gray-700 text-xs sm:text-sm">
+                  <span className="font-medium">Meet: </span>
+                  <span className="text-sm sm:text-base font-semibold text-red-600">${finalAmount}</span>
                 </div>
                 {discountText && (
-                  <div className="text-sm text-gray-500">{discountText}</div>
+                  <div className="text-xs text-gray-500">{discountText}</div>
                 )}
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 href="/product-list"
-                className="flex-1 px-6 py-3 border-2 border-red-500 text-red-500 rounded-lg font-semibold hover:bg-red-50 transition text-center"
+                className="flex-1 px-4 sm:px-6 py-2 sm:py-3 border-2 border-red-500 text-red-500 rounded-lg font-medium hover:bg-red-50 transition text-center text-xs sm:text-sm"
               >
                 Continue adding
               </Link>
               <button
                 onClick={handleCheckout}
                 disabled={selectedCount === 0 || isSubmitting}
-                className="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
               >
                 {isSubmitting ? 'Processing...' : 'Checkout'}
               </button>
@@ -469,13 +544,12 @@ export default function CartPage() {
       {/* Floating Support Buttons */}
       <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
         <button 
-          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex flex-col items-center"
+          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
           onClick={() => window.open('https://wa.me/16266659178', '_blank')}
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          <span className="text-xs mt-1">Online Service</span>
         </button>
         <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />

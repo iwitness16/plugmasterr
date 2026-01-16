@@ -244,6 +244,14 @@ This guide will help you set up EmailJS to send order notifications to `orders@i
       </div>
     </div>
 
+    <div class="section">
+      <div class="section-title">💳 Payment Method</div>
+      <div class="info-row">
+        <span class="info-label">Selected Payment:</span>
+        <span class="info-value"><strong>{{payment_method}}</strong></span>
+      </div>
+    </div>
+
     <div class="footer">
       <p>This is an automated email from your order system.</p>
       <p>Order details are also stored in Firestore database.</p>
@@ -299,6 +307,7 @@ The following variables are available in your email template:
 | `{{weight}}` | Weight | `180 lbs` |
 | `{{address}}` | Shipping address | `123 Main St, City, State 12345` |
 | `{{customize}}` | Customization notes | `None` or custom text |
+| `{{payment_method}}` | Payment method selected | `Cryptocurrency`, `Apple Pay`, `CashApp`, `Zelle`, `Bank Transfer` |
 
 ## Step 7: Test Your Setup
 

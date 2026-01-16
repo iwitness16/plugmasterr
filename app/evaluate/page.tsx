@@ -153,10 +153,36 @@ const generateReviews = () => {
     const { firstName, lastName } = nameCombinations[i];
     const name = `${firstName} ${lastName}`;
     
-    // Generate dates spread across 2026-2025
-    const year = 2026 + Math.floor(i / 60);
-    const month = String((i % 12) + 1).padStart(2, '0');
-    const day = String((i % 28) + 1).padStart(2, '0');
+    // Generate dates starting from 2026-01-15 with varying gaps (not day by day)
+    // First review is 2026-01-15, then gaps like 2 days, 5 days, 10 days, etc.
+    // Last reviews are in 2022
+    const startDate = new Date('2026-01-15');
+    let totalDaysToSubtract = 0;
+    
+    // Calculate cumulative days to subtract with varying gaps
+    // Use a pattern that creates natural-looking gaps: 2, 3, 5, 7, 10, 12, 15, etc.
+    for (let j = 0; j < i; j++) {
+      // Create varying gaps: smaller gaps early, larger gaps later
+      const gapPattern = [2, 3, 2, 5, 3, 7, 5, 10, 7, 12, 10, 15, 12, 20, 15, 25, 20, 30, 25, 35];
+      const gapIndex = j % gapPattern.length;
+      const gap = gapPattern[gapIndex];
+      // Add some randomness: ±1-3 days
+      const randomVariation = (j % 4) - 1; // -1, 0, 1, 2
+      totalDaysToSubtract += gap + randomVariation;
+    }
+    
+    const reviewDate = new Date(startDate);
+    reviewDate.setDate(reviewDate.getDate() - totalDaysToSubtract);
+    
+    // Ensure date doesn't go before 2022-01-01
+    const minDate = new Date('2022-01-01');
+    if (reviewDate < minDate) {
+      reviewDate.setTime(minDate.getTime());
+    }
+    
+    const year = reviewDate.getFullYear();
+    const month = String(reviewDate.getMonth() + 1).padStart(2, '0');
+    const day = String(reviewDate.getDate()).padStart(2, '0');
     const date = `${year}-${month}-${day}`;
     
     // Use only real human photos for avatars (no animations or letter-based)
@@ -183,12 +209,10 @@ const generateReviews = () => {
       '/images/proof9.jpg'
     ];
     
-    if (i < 15) {
-      // First 3 pages (reviews 0-14) - assign proof images more frequently
-      if (i < 9) {
-        image = proofImages[i]; // First 9 reviews get proof1-9
-      } else if (i % 2 === 0) {
-        image = proofImages[i % 9]; // Remaining reviews on first 3 pages get proof images
+    if (i < 5) {
+      // First page (reviews 0-4) - only first 3 reviews have images
+      if (i < 3) {
+        image = proofImages[i]; // First 3 reviews get proof1-3
       }
     } else if (i >= 170) {
       // Last 2 pages (reviews 170-179) - assign proof images more frequently
@@ -287,7 +311,7 @@ export default function EvaluatePage() {
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-xl sm:text-2xl font-display font-bold tracking-tight">
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
                   IDMASTER
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
@@ -296,14 +320,14 @@ export default function EvaluatePage() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8">
-              <Link href="/" className="hover:text-yellow-green transition text-sm text-gray-300">HOME</Link>
-              <Link href="/product-info" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT INFO</Link>
-              <Link href="/order" className="hover:text-yellow-green transition text-sm text-gray-300">ORDER</Link>
-              <Link href="/product-list" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT LIST</Link>
-              <Link href="#" className="hover:text-yellow-green transition text-sm text-gray-300">USE GUIDE</Link>
-              <Link href="/evaluate" className="text-yellow-green hover:text-yellow-green transition text-sm border-b-2 border-yellow-green pb-1">EVALUATE</Link>
-              <Link href="/faq" className="hover:text-yellow-green transition text-sm text-gray-300">FAQ</Link>
-              <Link href="/contact-us" className="hover:text-yellow-green transition text-sm text-gray-300">CONTACT US</Link>
+              <Link href="/" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">HOME</Link>
+              <Link href="/product-info" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT INFO</Link>
+              <Link href="/order" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">ORDER</Link>
+              <Link href="/product-list" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT LIST</Link>
+              <Link href="#" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-yellow-green hover:text-yellow-green transition text-xs sm:text-sm border-b-2 border-yellow-green pb-1">EVALUATE</Link>
+              <Link href="/faq" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">FAQ</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT US</Link>
             </div>
 
             {/* Cart Icon */}
@@ -317,14 +341,14 @@ export default function EvaluatePage() {
           {/* Mobile Horizontal Scroll Menu */}
           <div className="lg:hidden overflow-x-auto pb-3 hide-scrollbar">
             <div className="flex space-x-6 min-w-max">
-              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">HOME</Link>
-              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT INFO</Link>
-              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">ORDER</Link>
-              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT LIST</Link>
-              <Link href="#" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">USE GUIDE</Link>
-              <Link href="/evaluate" className="text-yellow-green text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">EVALUATE</Link>
-              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">FAQ</Link>
-              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">CONTACT US</Link>
+              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">HOME</Link>
+              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT INFO</Link>
+              <Link href="/order" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">ORDER</Link>
+              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT LIST</Link>
+              <Link href="#" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-yellow-green text-xs sm:text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">EVALUATE</Link>
+              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">FAQ</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT US</Link>
             </div>
           </div>
         </div>
@@ -342,18 +366,18 @@ export default function EvaluatePage() {
 
       {/* Main Content */}
       <div className="pt-32 sm:pt-40 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8 bg-white text-black border-t border-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-2xl mx-auto">
 
           {/* Reviews - Single Column */}
-          <div className="space-y-6 mb-12">
+          <div className="space-y-4 mb-12">
             {currentReviews.map((review) => (
-              <div key={review.id} className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 shadow-sm">
+              <div key={review.id} className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4 shadow-sm">
                 {/* Review Header */}
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-3">
                   <img 
                     src={review.avatar} 
                     alt={review.name}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover flex-shrink-0"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
                     onError={(e) => {
                       // Fallback to a real photo avatar if image fails to load
                       const fallbackId = review.id % 70;
@@ -361,23 +385,23 @@ export default function EvaluatePage() {
                     }}
                   />
                   <div className="flex-1 min-w-0">
-                    <div className="font-display font-bold text-black text-base sm:text-lg">{review.name}</div>
-                    <div className="text-gray-500 text-sm sm:text-base">{review.date}</div>
+                    <div className="font-display font-bold text-black text-sm sm:text-base">{review.name}</div>
+                    <div className="text-gray-500 text-xs sm:text-sm">{review.date}</div>
                   </div>
                 </div>
 
                 {/* Review Text */}
-                <p className="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed">
+                <p className="text-gray-700 text-xs sm:text-sm mb-3 leading-relaxed">
                   {review.text}
                 </p>
 
                 {/* Review Image if available */}
                 {review.image && (
-                  <div className="mt-4">
+                  <div className="mt-3">
                     <img 
                       src={review.image} 
                       alt="Review image"
-                      className="w-full h-auto rounded-lg max-h-96 object-cover"
+                      className="w-full h-auto rounded-lg max-h-64 sm:max-h-80 object-cover"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                       }}
@@ -473,8 +497,8 @@ export default function EvaluatePage() {
               <div className="space-y-1.5 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
                 <p><span className="font-semibold">Company:</span> IDPLUGMASTER Inc.</p>
                 <p><span className="font-semibold">Address:</span> 548 Market St Suite 96966, San Francisco, CA 94104</p>
-                <p><span className="font-semibold">WhatsApp:</span> 12052185256</p>
-                <p><span className="font-semibold">Telegram:</span> idcardmoss</p>
+                <p><span className="font-semibold">WhatsApp:</span> 6266659178</p>
+                <p><span className="font-semibold">Telegram:</span> ID_Master2</p>
                 <p><span className="font-semibold">Email:</span> orders@idplugmaster.com</p>
                 <div className="flex space-x-3 mt-4">
                   <a href="#" className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
@@ -507,13 +531,12 @@ export default function EvaluatePage() {
       {/* Floating Support Buttons */}
       <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
         <button 
-          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex flex-col items-center"
+          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
           onClick={() => window.open('https://wa.me/16266659178', '_blank')}
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          <span className="text-xs mt-1">Online Service</span>
         </button>
         <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />

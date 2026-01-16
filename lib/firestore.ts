@@ -30,6 +30,9 @@ export interface OrderData {
   address: string;
   customize: string;
   
+  // Payment Method
+  paymentMethod: string;
+  
   // Files (stored as base64 strings or URLs)
   photo: string | null;
   signature: string | null;

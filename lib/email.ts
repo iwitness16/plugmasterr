@@ -29,6 +29,9 @@ export interface EmailOrderData {
   address: string;
   customize: string;
   
+  // Payment Method
+  paymentMethod: string;
+  
   // Order ID
   orderId: string;
   orderDate: string;
@@ -62,6 +65,7 @@ export const sendOrderEmail = async (orderData: EmailOrderData): Promise<void> =
       weight: orderData.weight ? `${orderData.weight} lbs` : 'N/A',
       address: orderData.address,
       customize: orderData.customize || 'None',
+      payment_method: orderData.paymentMethod || 'Not specified',
     };
 
     // Send email using EmailJS

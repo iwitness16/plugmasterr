@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ShoppingCart, ChevronUp, Upload, Calendar, MapPin, User, DollarSign, Package, ArrowRight } from 'lucide-react';
+import { ShoppingCart, ChevronUp, Upload, MapPin, User, DollarSign, Package, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { submitOrder } from '@/lib/firestore';
 import { addToCart, getCartItemCount } from '@/lib/cart';
@@ -16,7 +16,7 @@ function OrderPageContent() {
     product: searchParams?.get('product') || 'California',
     social: 'WhatsApp',
     socialValue: '',
-    email: 'service@gmail.com',
+    email: '',
     firstName: '',
     middleName: '',
     lastName: '',
@@ -29,6 +29,7 @@ function OrderPageContent() {
     weight: '160',
     address: '',
     customize: '',
+    paymentMethod: '',
   });
 
   const [photoPreview, setPhotoPreview] = useState<string | null>('/images/sample.png');
@@ -61,6 +62,21 @@ function OrderPageContent() {
       setFormData(prev => ({ ...prev, product: decodeURIComponent(productParam) }));
     }
   }, [searchParams]);
+
+  // Update main product image based on selected product
+  useEffect(() => {
+    if (formData.product === 'SSN') {
+      setMainProductImage('/images/ssn.png');
+    } else if (formData.product === 'British Columbia') {
+      setMainProductImage('/images/british.jpg');
+    } else if (formData.product === 'Ontario') {
+      setMainProductImage('/images/ontario.jpg');
+    } else if (formData.product === 'Quebec') {
+      setMainProductImage('/images/quebec.jpg');
+    } else {
+      setMainProductImage('/images/ordertemp.png');
+    }
+  }, [formData.product]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -123,6 +139,9 @@ function OrderPageContent() {
       }
       if (!photoFile && photoPreview === '/images/sample.png') {
         throw new Error('Please upload your photo');
+      }
+      if (!formData.paymentMethod.trim()) {
+        throw new Error('Please select a payment method');
       }
 
       // Convert files to base64
@@ -216,6 +235,9 @@ function OrderPageContent() {
       if (!photoFile && photoPreview === '/images/sample.png') {
         throw new Error('Please upload your photo');
       }
+      if (!formData.paymentMethod.trim()) {
+        throw new Error('Please select a payment method');
+      }
 
       // Convert files to base64 with compression
       let photoBase64: string | null = null;
@@ -269,6 +291,7 @@ function OrderPageContent() {
         weight: formData.weight,
         address: formData.address,
         customize: formData.customize,
+        paymentMethod: formData.paymentMethod,
         photo: photoBase64,
         signature: signatureBase64,
       };
@@ -313,6 +336,7 @@ function OrderPageContent() {
           weight: '160',
           address: '',
           customize: '',
+          paymentMethod: '',
         });
         setPhotoPreview('/images/sample.png');
         setSignaturePreview('/images/sample2.png');
@@ -352,7 +376,7 @@ function OrderPageContent() {
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-xl sm:text-2xl font-display font-bold tracking-tight">
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
                   IDMASTER
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
@@ -361,14 +385,14 @@ function OrderPageContent() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8">
-              <Link href="/" className="hover:text-yellow-green transition text-sm text-gray-300">HOME</Link>
-              <Link href="/product-info" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT INFO</Link>
-              <Link href="/order" className="text-yellow-green hover:text-yellow-green transition text-sm border-b-2 border-yellow-green pb-1">ORDER</Link>
-              <Link href="/product-list" className="hover:text-yellow-green transition text-sm text-gray-300">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="hover:text-yellow-green transition text-sm text-gray-300">USE GUIDE</Link>
-              <Link href="/evaluate" className="hover:text-yellow-green transition text-sm text-gray-300">EVALUATE</Link>
-              <Link href="/faq" className="hover:text-yellow-green transition text-sm text-gray-300">FAQ</Link>
-              <Link href="/contact-us" className="hover:text-yellow-green transition text-sm text-gray-300">CONTACT US</Link>
+              <Link href="/" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">HOME</Link>
+              <Link href="/product-info" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT INFO</Link>
+              <Link href="/order" className="text-yellow-green hover:text-yellow-green transition text-xs sm:text-sm border-b-2 border-yellow-green pb-1">ORDER</Link>
+              <Link href="/product-list" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">USE GUIDE</Link>
+              <Link href="/evaluate" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">EVALUATE</Link>
+              <Link href="/faq" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">FAQ</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT US</Link>
             </div>
 
             {/* Cart Icon */}
@@ -387,14 +411,14 @@ function OrderPageContent() {
           {/* Mobile Horizontal Scroll Menu */}
           <div className="lg:hidden overflow-x-auto pb-3 hide-scrollbar">
             <div className="flex space-x-6 min-w-max">
-              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">HOME</Link>
-              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT INFO</Link>
-              <Link href="/order" className="text-yellow-green text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">ORDER</Link>
-              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">PRODUCT LIST</Link>
-              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">USE GUIDE</Link>
-              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">EVALUATE</Link>
-              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">FAQ</Link>
-              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-sm whitespace-nowrap">CONTACT US</Link>
+              <Link href="/" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">HOME</Link>
+              <Link href="/product-info" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT INFO</Link>
+              <Link href="/order" className="text-yellow-green text-xs sm:text-sm whitespace-nowrap border-b-2 border-yellow-green pb-1">ORDER</Link>
+              <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT LIST</Link>
+              <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">USE GUIDE</Link>
+              <Link href="/evaluate" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">EVALUATE</Link>
+              <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">FAQ</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT US</Link>
             </div>
           </div>
         </div>
@@ -447,13 +471,31 @@ function OrderPageContent() {
               {/* Thumbnail Images */}
               <div className="grid grid-cols-3 gap-4">
                 <div 
-                  onClick={() => setMainProductImage('/images/ordertemp.png')}
+                  onClick={() => {
+                    let imagePath = '/images/ordertemp.png';
+                    if (formData.product === 'SSN') {
+                      imagePath = '/images/ssn.png';
+                    } else if (formData.product === 'British Columbia') {
+                      imagePath = '/images/british.jpg';
+                    } else if (formData.product === 'Ontario') {
+                      imagePath = '/images/ontario.jpg';
+                    } else if (formData.product === 'Quebec') {
+                      imagePath = '/images/quebec.jpg';
+                    }
+                    setMainProductImage(imagePath);
+                  }}
                   className="bg-white rounded-lg shadow p-2 cursor-pointer hover:shadow-lg transition-all border-2 border-transparent hover:border-yellow-green"
                 >
                   <div className="bg-gray-100 rounded aspect-[3.375/2.125] flex items-center justify-center overflow-hidden relative">
                     <div className="watermarked-image w-full h-full">
                       <img 
-                        src="/images/ordertemp.png" 
+                        src={
+                          formData.product === 'SSN' ? '/images/ssn.png' :
+                          formData.product === 'British Columbia' ? '/images/british.jpg' :
+                          formData.product === 'Ontario' ? '/images/ontario.jpg' :
+                          formData.product === 'Quebec' ? '/images/quebec.jpg' :
+                          '/images/ordertemp.png'
+                        } 
                         alt="Front view" 
                         className="w-full h-full object-contain"
                         onError={(e) => {
@@ -514,6 +556,9 @@ function OrderPageContent() {
                 >
                   <option value="Alabama">Alabama</option>
                   <option value="Arizona">Arizona</option>
+                  <option value="Birmingham">Birmingham</option>
+                  <option value="Bristol">Bristol</option>
+                  <option value="British Columbia">British Columbia</option>
                   <option value="California">California</option>
                   <option value="California CM1">California CM1</option>
                   <option value="California CDL">California CDL</option>
@@ -526,7 +571,11 @@ function OrderPageContent() {
                   <option value="Illinois CDL">Illinois CDL</option>
                   <option value="Indiana">Indiana</option>
                   <option value="Kansas">Kansas</option>
+                  <option value="Leeds">Leeds</option>
+                  <option value="Liverpool">Liverpool</option>
+                  <option value="London">London</option>
                   <option value="Maryland">Maryland</option>
+                  <option value="Manchester">Manchester</option>
                   <option value="Massachusetts">Massachusetts</option>
                   <option value="Michigan">Michigan</option>
                   <option value="Minnesota">Minnesota</option>
@@ -537,22 +586,25 @@ function OrderPageContent() {
                   <option value="New Jersey">New Jersey</option>
                   <option value="New York Old Verison">New York Old Verison</option>
                   <option value="New York CDL">New York CDL</option>
+                  <option value="Newcastle">Newcastle</option>
                   <option value="North Carolina">North Carolina</option>
+                  <option value="Northern Ireland">Northern Ireland</option>
                   <option value="Ohio">Ohio</option>
                   <option value="Ohio CDL">Ohio CDL</option>
+                  <option value="Ontario">Ontario</option>
                   <option value="Pennsylvania">Pennsylvania</option>
                   <option value="Pennsylvania CDL">Pennsylvania CDL</option>
+                  <option value="Quebec">Quebec</option>
                   <option value="Rhode Island">Rhode Island</option>
+                  <option value="Scotland">Scotland</option>
                   <option value="South Carolina">South Carolina</option>
+                  <option value="SSN">SSN</option>
                   <option value="Texas">Texas</option>
                   <option value="Texas CDL">Texas CDL</option>
                   <option value="Utah">Utah</option>
                   <option value="Virginia">Virginia</option>
+                  <option value="Wales">Wales</option>
                   <option value="Washington">Washington</option>
-                  <option value="British Columbia">British Columbia</option>
-                  <option value="Ontario">Ontario</option>
-                  <option value="Quebec">Quebec</option>
-                  <option value="SSN">SSN</option>
                 </select>
               </div>
 
@@ -719,7 +771,7 @@ function OrderPageContent() {
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
-                  placeholder="service@gmail.com"
+                  placeholder="your.email@example.com"
                 />
               </div>
             </div>
@@ -795,16 +847,12 @@ function OrderPageContent() {
                 Birthday <span className="text-red-500">*</span>
               </label>
               <div className="md:col-span-2">
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={formData.birthday}
-                    onChange={(e) => handleInputChange('birthday', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent pr-10"
-                    placeholder="MM/dd/yyyy"
-                  />
-                  <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                </div>
+                <input
+                  type="date"
+                  value={formData.birthday}
+                  onChange={(e) => handleInputChange('birthday', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
+                />
               </div>
             </div>
 
@@ -1029,6 +1077,27 @@ function OrderPageContent() {
               </div>
             </div>
 
+            {/* Payment Method */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+              <label className="text-gray-700 font-semibold md:text-right">
+                Payment Method <span className="text-red-500">*</span>
+              </label>
+              <div className="md:col-span-2">
+                <select
+                  value={formData.paymentMethod}
+                  onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
+                >
+                  <option value="">Select Payment Method</option>
+                  <option value="Cryptocurrency">Cryptocurrency</option>
+                  <option value="Apple Pay">Apple Pay</option>
+                  <option value="CashApp">CashApp</option>
+                  <option value="Zelle">Zelle</option>
+                  <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+              </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
               <button
@@ -1088,16 +1157,16 @@ function OrderPageContent() {
               <div className="space-y-1.5 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
                 <p><span className="font-semibold">Company:</span> IDPLUGMASTER Inc.</p>
                 <p><span className="font-semibold">Address:</span> 548 Market St Suite 96966, San Francisco, CA 94104</p>
-                <p><span className="font-semibold">WhatsApp:</span> 12052185256</p>
-                <p><span className="font-semibold">Telegram:</span> idcardmoss</p>
+                <p><span className="font-semibold">WhatsApp:</span> 6266659178</p>
+                <p><span className="font-semibold">Telegram:</span> ID_Master2</p>
                 <p><span className="font-semibold">Email:</span> orders@idplugmaster.com</p>
                 <div className="flex space-x-3 mt-4">
-                  <a href="https://wa.me/12052185256" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
+                  <a href="https://wa.me/16266659178" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
                   </a>
-                  <a href="https://t.me/idcardmoss" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+                  <a href="https://t.me/ID_Master2" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121L7.116 13.815l-2.91-.907c-.632-.196-.642-.632.135-.936l11.37-4.364c.526-.194.988.12.817.936z"/>
                     </svg>
@@ -1122,13 +1191,12 @@ function OrderPageContent() {
       {/* Floating Support Buttons */}
       <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
         <button 
-          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex flex-col items-center"
+          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
           onClick={() => window.open('https://wa.me/16266659178', '_blank')}
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          <span className="text-xs mt-1">Online Service</span>
         </button>
         <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />
