@@ -20,6 +20,7 @@ export interface CartItem {
     weight: string;
     address: string;
     customize: string;
+    paymentMethod: string;
     photo: string | null;
     signature: string | null;
   };

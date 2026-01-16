@@ -155,6 +155,7 @@ export default function CartPage() {
           quantity: item.quantity,
           totalPrice: totalPrice,
           ...item.formData,
+          paymentMethod: item.formData.paymentMethod || '', // Ensure paymentMethod is included
           photo: photo,
           signature: signature,
         };

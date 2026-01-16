@@ -186,6 +186,7 @@ function OrderPageContent() {
           weight: formData.weight,
           address: formData.address,
           customize: formData.customize,
+          paymentMethod: formData.paymentMethod,
           photo: photoBase64,
           signature: signatureBase64,
         },
