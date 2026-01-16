@@ -53,206 +53,130 @@ This guide will help you set up EmailJS to send order notifications to `orders@i
 
 ### Template Content (HTML):
 
+**⚠️ IMPORTANT: Email clients strip out `<style>` tags. Use this version with INLINE STYLES:**
+
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    .container {
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 8px 8px 0 0;
-      margin: -30px -30px 30px -30px;
-      text-align: center;
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    .order-info {
-      background-color: #f8f9fa;
-      border-left: 4px solid #667eea;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 4px;
-    }
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #e9ecef;
-    }
-    .info-row:last-child {
-      border-bottom: none;
-    }
-    .info-label {
-      font-weight: bold;
-      color: #495057;
-    }
-    .info-value {
-      color: #212529;
-    }
-    .section {
-      margin: 25px 0;
-    }
-    .section-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #667eea;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #667eea;
-    }
-    .highlight {
-      background-color: #fff3cd;
-      padding: 15px;
-      border-radius: 4px;
-      border-left: 4px solid #ffc107;
-      margin: 15px 0;
-    }
-    .footer {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid #dee2e6;
-      text-align: center;
-      color: #6c757d;
-      font-size: 12px;
-    }
-  </style>
 </head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>🛒 New Order Received</h1>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4;">
+  <div style="background-color: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; margin: -30px -30px 30px -30px; text-align: center;">
+      <h1 style="margin: 0; font-size: 24px;">🛒 New Order Received</h1>
     </div>
 
-    <div class="order-info">
-      <div class="info-row">
-        <span class="info-label">Order ID:</span>
-        <span class="info-value"><strong>#{{order_id}}</strong></span>
+    <div style="background-color: #f8f9fa; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 4px;">
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Order ID:</span>
+        <span style="color: #212529;"><strong>#{{order_id}}</strong></span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Order Date:</span>
-        <span class="info-value">{{order_date}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Order Date:</span>
+        <span style="color: #212529;">{{order_date}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Product:</span>
-        <span class="info-value"><strong>{{product}}</strong></span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Product:</span>
+        <span style="color: #212529;"><strong>{{product}}</strong></span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Quantity:</span>
-        <span class="info-value">{{quantity}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Quantity:</span>
+        <span style="color: #212529;">{{quantity}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Total Price:</span>
-        <span class="info-value"><strong style="color: #28a745; font-size: 18px;">{{total_price}}</strong></span>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">👤 Customer Information</div>
-      <div class="info-row">
-        <span class="info-label">Full Name:</span>
-        <span class="info-value">{{full_name}}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Email:</span>
-        <span class="info-value">{{customer_email}}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Contact Method:</span>
-        <span class="info-value">{{contact_method}}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Contact Value:</span>
-        <span class="info-value">{{contact_value}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <span style="font-weight: bold; color: #495057;">Total Price:</span>
+        <span style="color: #28a745; font-size: 18px; font-weight: bold;">{{total_price}}</span>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">📋 Personal Details</div>
-      <div class="info-row">
-        <span class="info-label">First Name:</span>
-        <span class="info-value">{{first_name}}</span>
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">👤 Customer Information</div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Full Name:</span>
+        <span style="color: #212529;">{{full_name}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Middle Name:</span>
-        <span class="info-value">{{middle_name}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Email:</span>
+        <span style="color: #212529;">{{customer_email}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Last Name:</span>
-        <span class="info-value">{{last_name}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Contact Method:</span>
+        <span style="color: #212529;">{{contact_method}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Sex:</span>
-        <span class="info-value">{{sex}}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Birthday:</span>
-        <span class="info-value">{{birthday}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <span style="font-weight: bold; color: #495057;">Contact Value:</span>
+        <span style="color: #212529;">{{contact_value}}</span>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">👁️ Physical Attributes</div>
-      <div class="info-row">
-        <span class="info-label">Hair Color:</span>
-        <span class="info-value">{{hair_color}}</span>
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">📋 Personal Details</div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">First Name:</span>
+        <span style="color: #212529;">{{first_name}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Eyes Color:</span>
-        <span class="info-value">{{eyes_color}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Middle Name:</span>
+        <span style="color: #212529;">{{middle_name}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Height:</span>
-        <span class="info-value">{{height}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Last Name:</span>
+        <span style="color: #212529;">{{last_name}}</span>
       </div>
-      <div class="info-row">
-        <span class="info-label">Weight:</span>
-        <span class="info-value">{{weight}}</span>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Sex:</span>
+        <span style="color: #212529;">{{sex}}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <span style="font-weight: bold; color: #495057;">Birthday:</span>
+        <span style="color: #212529;">{{birthday}}</span>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">📍 Address</div>
-      <div class="highlight">
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">👁️ Physical Attributes</div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Hair Color:</span>
+        <span style="color: #212529;">{{hair_color}}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Eyes Color:</span>
+        <span style="color: #212529;">{{eyes_color}}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+        <span style="font-weight: bold; color: #495057;">Height:</span>
+        <span style="color: #212529;">{{height}}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <span style="font-weight: bold; color: #495057;">Weight:</span>
+        <span style="color: #212529;">{{weight}}</span>
+      </div>
+    </div>
+
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">📍 Address</div>
+      <div style="background-color: #fff3cd; padding: 15px; border-radius: 4px; border-left: 4px solid #ffc107; margin: 15px 0;">
         {{address}}
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">✏️ Customization Notes</div>
-      <div class="highlight">
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">✏️ Customization Notes</div>
+      <div style="background-color: #fff3cd; padding: 15px; border-radius: 4px; border-left: 4px solid #ffc107; margin: 15px 0;">
         {{customize}}
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">💳 Payment Method</div>
-      <div class="info-row">
-        <span class="info-label">Selected Payment:</span>
-        <span class="info-value"><strong>{{payment_method}}</strong></span>
+    <div style="margin: 25px 0;">
+      <div style="font-size: 18px; font-weight: bold; color: #667eea; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">💳 Payment Method</div>
+      <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <span style="font-weight: bold; color: #495057;">Selected Payment:</span>
+        <span style="color: #212529; font-weight: bold;">{{payment_method}}</span>
       </div>
     </div>
 
-    <div class="footer">
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; text-align: center; color: #6c757d; font-size: 12px;">
       <p>This is an automated email from your order system.</p>
       <p>Order details are also stored in Firestore database.</p>
     </div>
@@ -260,6 +184,8 @@ This guide will help you set up EmailJS to send order notifications to `orders@i
 </body>
 </html>
 ```
+
+**Note:** This template uses inline styles (styles directly on HTML elements) because most email clients strip out `<style>` tags in the `<head>`. Inline styles ensure your email looks beautiful in all email clients.
 
 4. **Save the template** and **note your Template ID** (e.g., `template_xxxxxxxxx`)
 
