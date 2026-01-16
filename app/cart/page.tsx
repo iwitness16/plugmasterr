@@ -162,21 +162,26 @@ export default function CartPage() {
 
         const orderId = await submitOrder(orderData);
         
-        // Send email notification
-        const orderDate = new Date().toLocaleString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZoneName: 'short'
-        });
-        
-        await sendOrderEmail({
-          ...orderData,
-          orderId,
-          orderDate,
-        });
+        // Send email notification (don't block on email errors)
+        try {
+          const orderDate = new Date().toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZoneName: 'short'
+          });
+          
+          await sendOrderEmail({
+            ...orderData,
+            orderId,
+            orderDate,
+          });
+        } catch (emailError) {
+          // Log email error but don't fail the order
+          console.error('Email sending failed (order still saved):', emailError);
+        }
         
         return orderId;
       });
@@ -201,7 +206,7 @@ export default function CartPage() {
     } catch (error: any) {
       console.error('Error during checkout:', error);
       setSubmitError(error.message || 'Failed to checkout. Please try again.');
-    } finally {
+      // Ensure we reset the submitting state even on error
       setIsSubmitting(false);
     }
   };
@@ -346,8 +351,9 @@ export default function CartPage() {
                           />
                         </td>
                         <td className="px-3 sm:px-4 py-3">
-                          <div className="flex items-center space-x-3 sm:space-x-4">
-                            <div className="watermarked-image w-16 h-12 sm:w-20 sm:h-16 relative flex-shrink-0">
+                          <div className="flex flex-col items-center space-y-2">
+                            <div className="font-medium text-gray-800 text-xs sm:text-sm text-center w-full">{item.product}</div>
+                            <div className="watermarked-image w-24 h-16 sm:w-32 sm:h-20 relative flex-shrink-0 flex items-center justify-center">
                               <img
                                 src={item.image}
                                 alt={item.product}
@@ -357,10 +363,7 @@ export default function CartPage() {
                                 }}
                               />
                             </div>
-                            <div className="min-w-0">
-                              <div className="font-medium text-gray-800 text-xs sm:text-sm truncate">{item.product}</div>
-                              <div className="text-gray-500 text-xs">{item.formData.firstName} {item.formData.lastName}</div>
-                            </div>
+                            <div className="text-gray-500 text-xs text-center">{item.formData.firstName} {item.formData.lastName}</div>
                           </div>
                         </td>
                         <td className="px-3 sm:px-4 py-3 text-center text-gray-800 font-medium text-xs sm:text-sm">
@@ -420,21 +423,21 @@ export default function CartPage() {
                         type="checkbox"
                         checked={item.selected}
                         onChange={() => handleSelectItem(item.id)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1"
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1 flex-shrink-0"
                       />
-                      <div className="watermarked-image w-20 h-16 relative flex-shrink-0">
-                        <img
-                          src={item.image}
-                          alt={item.product}
-                          className="w-full h-full object-contain rounded"
-                          onError={(e) => {
-                            e.currentTarget.src = '/images/idfront.jpg';
-                          }}
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-800 text-xs sm:text-sm mb-1">{item.product}</div>
-                        <div className="text-gray-500 text-xs">{item.formData.firstName} {item.formData.lastName}</div>
+                      <div className="flex-1 flex flex-col items-center space-y-2">
+                        <div className="font-medium text-gray-800 text-xs sm:text-sm text-center w-full">{item.product}</div>
+                        <div className="watermarked-image w-full max-w-[200px] h-24 sm:h-32 relative flex items-center justify-center">
+                          <img
+                            src={item.image}
+                            alt={item.product}
+                            className="w-full h-full object-contain rounded"
+                            onError={(e) => {
+                              e.currentTarget.src = '/images/idfront.jpg';
+                            }}
+                          />
+                        </div>
+                        <div className="text-gray-500 text-xs text-center">{item.formData.firstName} {item.formData.lastName}</div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 mb-3 text-xs sm:text-sm">
