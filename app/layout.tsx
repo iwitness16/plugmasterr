@@ -5,6 +5,11 @@ import FontLoader from "../components/FontLoader";
 export const metadata: Metadata = {
   title: "IDPLUGMASTER - Premium Fake ID Cards",
   description: "Top Fake ID Maker - Building Premium, Authentic-Looking and Scannable Fake IDs",
+  icons: {
+    icon: '/images/icon.png',
+    shortcut: '/images/icon.png',
+    apple: '/images/icon.png',
+  },
 };
 
 export const viewport: Viewport = {
