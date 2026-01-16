@@ -73,6 +73,19 @@ function OrderPageContent() {
       setMainProductImage('/images/ontario.jpg');
     } else if (formData.product === 'Quebec') {
       setMainProductImage('/images/quebec.jpg');
+    } else if (
+      formData.product === 'London' ||
+      formData.product === 'Newcastle' ||
+      formData.product === 'Wales' ||
+      formData.product === 'Scotland' ||
+      formData.product === 'Northern Ireland' ||
+      formData.product === 'Birmingham' ||
+      formData.product === 'Manchester' ||
+      formData.product === 'Liverpool' ||
+      formData.product === 'Leeds' ||
+      formData.product === 'Bristol'
+    ) {
+      setMainProductImage('/images/uk.jpg');
     } else {
       setMainProductImage('/images/ordertemp.png');
     }
@@ -482,6 +495,19 @@ function OrderPageContent() {
                       imagePath = '/images/ontario.jpg';
                     } else if (formData.product === 'Quebec') {
                       imagePath = '/images/quebec.jpg';
+                    } else if (
+                      formData.product === 'London' ||
+                      formData.product === 'Newcastle' ||
+                      formData.product === 'Wales' ||
+                      formData.product === 'Scotland' ||
+                      formData.product === 'Northern Ireland' ||
+                      formData.product === 'Birmingham' ||
+                      formData.product === 'Manchester' ||
+                      formData.product === 'Liverpool' ||
+                      formData.product === 'Leeds' ||
+                      formData.product === 'Bristol'
+                    ) {
+                      imagePath = '/images/uk.jpg';
                     }
                     setMainProductImage(imagePath);
                   }}
@@ -495,6 +521,16 @@ function OrderPageContent() {
                           formData.product === 'British Columbia' ? '/images/british.jpg' :
                           formData.product === 'Ontario' ? '/images/ontario.jpg' :
                           formData.product === 'Quebec' ? '/images/quebec.jpg' :
+                          formData.product === 'London' ||
+                          formData.product === 'Newcastle' ||
+                          formData.product === 'Wales' ||
+                          formData.product === 'Scotland' ||
+                          formData.product === 'Northern Ireland' ||
+                          formData.product === 'Birmingham' ||
+                          formData.product === 'Manchester' ||
+                          formData.product === 'Liverpool' ||
+                          formData.product === 'Leeds' ||
+                          formData.product === 'Bristol' ? '/images/uk.jpg' :
                           '/images/ordertemp.png'
                         } 
                         alt="Front view" 
