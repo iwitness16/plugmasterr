@@ -1140,6 +1140,8 @@ function OrderPageContent() {
                   <option value="">Select Payment Method</option>
                   <option value="Cryptocurrency">Cryptocurrency</option>
                   <option value="Apple Pay">Apple Pay</option>
+                  <option value="Bank Transfer">Gift Card</option>
+                  <option value="Bank Transfer">Chime</option>
                   <option value="CashApp">CashApp</option>
                   <option value="Zelle">Zelle</option>
                   <option value="Bank Transfer">Bank Transfer</option>
