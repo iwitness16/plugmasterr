@@ -223,7 +223,7 @@ export default function LandingPage() {
                 <div className="p-4 sm:p-6">
                   <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3 text-center">{product.name}</h3>
                   <Link href={`/order?product=${encodeURIComponent(product.name === 'UK' ? 'London' : product.name)}`} className="w-full bg-yellow-green text-black py-2 sm:py-2.5 rounded-full font-medium hover:bg-yellow-green transition text-xs sm:text-sm block text-center">
-                    Order - £90
+                    Order - {product.name === 'London' ? '£90' : '$100'}
                   </Link>
                 </div>
               </div>

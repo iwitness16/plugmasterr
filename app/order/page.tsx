@@ -174,7 +174,12 @@ function OrderPageContent() {
       }
 
       // Calculate price
-      const basePrice = 100;
+      const ukProducts = [
+        'London', 'Newcastle', 'Wales', 'Scotland', 'Northern Ireland',
+        'Birmingham', 'Manchester', 'Liverpool', 'Leeds', 'Bristol'
+      ];
+      const isUK = ukProducts.includes(formData.product);
+      const basePrice = isUK ? 90 : 100;
       const itemPrice = basePrice;
 
       // Add to cart
@@ -368,12 +373,21 @@ function OrderPageContent() {
     }
   };
 
+  // Check if product is a UK product
+  const isUKProduct = () => {
+    const ukProducts = [
+      'London', 'Newcastle', 'Wales', 'Scotland', 'Northern Ireland',
+      'Birmingham', 'Manchester', 'Liverpool', 'Leeds', 'Bristol'
+    ];
+    return ukProducts.includes(formData.product);
+  };
+
   const calculatePrice = () => {
-    const basePrice = 100;
+    const basePrice = isUKProduct() ? 90 : 100;
     return basePrice * quantity;
   };
 
-  const basePrice = 100;
+  const basePrice = isUKProduct() ? 90 : 100;
   const totalPrice = basePrice * quantity;
 
   return (
@@ -677,7 +691,7 @@ function OrderPageContent() {
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">Total Price:</label>
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-red-600">${totalPrice}</span>
+                  <span className="text-2xl font-bold text-red-600">{isUKProduct() ? '£' : '$'}{totalPrice}</span>
                 </div>
               </div>
 

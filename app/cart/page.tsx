@@ -29,6 +29,15 @@ export default function CartPage() {
     return () => window.removeEventListener('cartUpdated', loadCart);
   }, []);
 
+  // Check if product is UK
+  const isUKProduct = (productName: string) => {
+    const ukProducts = [
+      'London', 'Newcastle', 'Wales', 'Scotland', 'Northern Ireland',
+      'Birmingham', 'Manchester', 'Liverpool', 'Leeds', 'Bristol'
+    ];
+    return ukProducts.includes(productName);
+  };
+
   // Calculate totals
   const selectedItems = cartItems.filter(item => item.selected);
   const selectedCount = selectedItems.length;
@@ -120,8 +129,7 @@ export default function CartPage() {
       
       // Submit each selected item as a separate order
       const orderPromises = selectedItems.map(async (item) => {
-        const basePrice = 100;
-        const totalPrice = basePrice * item.quantity;
+        const totalPrice = item.price * item.quantity;
 
         // Compress images if they exist and are base64 strings
         let photo = item.formData.photo;
@@ -380,7 +388,7 @@ export default function CartPage() {
                           </div>
                         </td>
                         <td className="px-3 sm:px-4 py-3 text-center text-gray-800 font-medium text-xs sm:text-sm">
-                          ${item.price}
+                          {isUKProduct(item.product) ? '£' : '$'}{item.price}
                         </td>
                         <td className="px-3 sm:px-4 py-3">
                           <div className="flex items-center justify-center space-x-2">
@@ -400,7 +408,7 @@ export default function CartPage() {
                           </div>
                         </td>
                         <td className="px-3 sm:px-4 py-3 text-center text-gray-800 font-medium text-xs sm:text-sm">
-                          ${item.price * item.quantity}
+                          {isUKProduct(item.product) ? '£' : '$'}{item.price * item.quantity}
                         </td>
                         <td className="px-3 sm:px-4 py-3">
                           <div className="flex items-center justify-center space-x-1 sm:space-x-2">
@@ -456,11 +464,11 @@ export default function CartPage() {
                     <div className="grid grid-cols-2 gap-3 mb-3 text-xs sm:text-sm">
                       <div>
                         <span className="text-gray-500">Price: </span>
-                        <span className="font-medium text-gray-800">${item.price}</span>
+                        <span className="font-medium text-gray-800">{isUKProduct(item.product) ? '£' : '$'}{item.price}</span>
                       </div>
                       <div>
                         <span className="text-gray-500">Subtotal: </span>
-                        <span className="font-medium text-gray-800">${item.price * item.quantity}</span>
+                        <span className="font-medium text-gray-800">{isUKProduct(item.product) ? '£' : '$'}{item.price * item.quantity}</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">

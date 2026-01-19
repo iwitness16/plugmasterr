@@ -90,16 +90,16 @@ const allProductsUnsorted: Product[] = [
   { id: 'quebec', name: 'Quebec', category: 'CANADA ID', price: 100, image: getRandomImage('Quebec', 'CANADA ID') },
   
   // UK ID (removed England)
-  { id: 'london', name: 'London', category: 'UK ID', price: 100, image: getRandomImage('London', 'UK ID') },
-  { id: 'newcastle', name: 'Newcastle', category: 'UK ID', price: 100, image: getRandomImage('Newcastle', 'UK ID') },
-  { id: 'wales', name: 'Wales', category: 'UK ID', price: 100, image: getRandomImage('Wales', 'UK ID') },
-  { id: 'scotland', name: 'Scotland', category: 'UK ID', price: 100, image: getRandomImage('Scotland', 'UK ID') },
-  { id: 'northern-ireland', name: 'Northern Ireland', category: 'UK ID', price: 100, image: getRandomImage('Northern Ireland', 'UK ID') },
-  { id: 'birmingham', name: 'Birmingham', category: 'UK ID', price: 100, image: getRandomImage('Birmingham', 'UK ID') },
-  { id: 'manchester', name: 'Manchester', category: 'UK ID', price: 100, image: getRandomImage('Manchester', 'UK ID') },
-  { id: 'liverpool', name: 'Liverpool', category: 'UK ID', price: 100, image: getRandomImage('Liverpool', 'UK ID') },
-  { id: 'leeds', name: 'Leeds', category: 'UK ID', price: 100, image: getRandomImage('Leeds', 'UK ID') },
-  { id: 'bristol', name: 'Bristol', category: 'UK ID', price: 100, image: getRandomImage('Bristol', 'UK ID') },
+  { id: 'london', name: 'London', category: 'UK ID', price: 90, image: getRandomImage('London', 'UK ID') },
+  { id: 'newcastle', name: 'Newcastle', category: 'UK ID', price: 90, image: getRandomImage('Newcastle', 'UK ID') },
+  { id: 'wales', name: 'Wales', category: 'UK ID', price: 90, image: getRandomImage('Wales', 'UK ID') },
+  { id: 'scotland', name: 'Scotland', category: 'UK ID', price: 90, image: getRandomImage('Scotland', 'UK ID') },
+  { id: 'northern-ireland', name: 'Northern Ireland', category: 'UK ID', price: 90, image: getRandomImage('Northern Ireland', 'UK ID') },
+  { id: 'birmingham', name: 'Birmingham', category: 'UK ID', price: 90, image: getRandomImage('Birmingham', 'UK ID') },
+  { id: 'manchester', name: 'Manchester', category: 'UK ID', price: 90, image: getRandomImage('Manchester', 'UK ID') },
+  { id: 'liverpool', name: 'Liverpool', category: 'UK ID', price: 90, image: getRandomImage('Liverpool', 'UK ID') },
+  { id: 'leeds', name: 'Leeds', category: 'UK ID', price: 90, image: getRandomImage('Leeds', 'UK ID') },
+  { id: 'bristol', name: 'Bristol', category: 'UK ID', price: 90, image: getRandomImage('Bristol', 'UK ID') },
   
   // SSN
   { id: 'ssn', name: 'SSN', category: 'SSN', price: 100, image: getRandomImage('SSN', 'SSN') },
