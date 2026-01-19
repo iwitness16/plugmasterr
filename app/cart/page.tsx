@@ -310,9 +310,8 @@ export default function CartPage() {
 
           {/* Success Message */}
           {submitSuccess && (
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-              <strong className="font-bold">Success! </strong>
-              <span className="block sm:inline">Your orders have been submitted successfully. We'll contact you soon!</span>
+            <div className="text-orange-600 mb-4">
+              <p className="font-medium">Your orders have been submitted successfully. We'll contact you soon!</p>
             </div>
           )}
 

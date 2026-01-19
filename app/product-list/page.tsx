@@ -368,7 +368,7 @@ export default function ProductListPage() {
                         href={`/order?product=${encodeURIComponent(product.name)}`}
                         className="w-full bg-yellow-green text-black py-2.5 rounded-full font-semibold hover:bg-yellow-green/90 transition text-center block text-sm"
                       >
-                        Order - ${product.price}
+                        Order - {product.category === 'UK ID' ? '£' : '$'}{product.price}
                       </Link>
                     </div>
                   ))}

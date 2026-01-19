@@ -751,17 +751,15 @@ function OrderPageContent() {
           <form onSubmit={handleFormSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8 space-y-6">
             {/* Success Message */}
             {submitSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-                <strong className="font-bold">Success! </strong>
-                <span className="block sm:inline">Your order has been submitted successfully. We'll contact you soon!</span>
+              <div className="text-orange-600 mb-4">
+                <p className="font-medium">Your order has been submitted successfully. We'll contact you soon!</p>
               </div>
             )}
 
             {/* Cart Success Message */}
             {cartSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-                <strong className="font-bold">Added to Cart! </strong>
-                <span className="block sm:inline">Item added to cart successfully. Redirecting to cart...</span>
+              <div className="text-orange-600 mb-4">
+                <p className="font-medium">Item added to cart successfully. Redirecting to cart...</p>
               </div>
             )}
 
