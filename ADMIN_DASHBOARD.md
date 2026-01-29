@@ -83,7 +83,6 @@ app/
 lib/
   adminAuth.ts          # Authentication utilities
   adminFirestore.ts     # Firestore functions for admin
-middleware.ts           # Route protection and subdomain handling
 ```
 
 ## Development
@@ -110,41 +109,39 @@ middleware.ts           # Route protection and subdomain handling
 
 For the admin dashboard to work on `admin.idplugmaster.com`:
 
+**Note:** Since this is a static export, middleware doesn't work. Subdomain routing must be handled at the hosting level.
+
+#### Option 1: Firebase Hosting
+
 1. **DNS Configuration:**
-   - Add a CNAME record: `admin.idplugmaster.com` → your hosting provider
+   - Add a CNAME record: `admin.idplugmaster.com` → your Firebase hosting domain
 
 2. **Firebase Hosting Configuration:**
-   Update `firebase.json` to handle subdomain routing:
-
-   ```json
-   {
-     "hosting": {
-       "public": "out",
-       "rewrites": [
-         {
-           "source": "/admin/**",
-           "destination": "/admin/index.html"
-         }
-       ],
-       "headers": [
-         {
-           "source": "**",
-           "headers": [
-             {
-               "key": "X-Content-Type-Options",
-               "value": "nosniff"
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+   The current `firebase.json` already handles routing. For subdomain support, you may need to:
+   - Set up multiple sites in Firebase Hosting (one for main domain, one for admin subdomain)
+   - Or use Firebase Hosting rewrites to redirect admin subdomain to `/admin` route
 
 3. **Deploy:**
    ```bash
    npm run deploy
    ```
+
+#### Option 2: Vercel Deployment
+
+1. **DNS Configuration:**
+   - Add a CNAME record: `admin.idplugmaster.com` → your Vercel deployment
+
+2. **Vercel Configuration:**
+   - Vercel automatically handles routing for static exports
+   - The admin routes (`/admin`, `/admin/login`) will work automatically
+   - No additional configuration needed
+
+3. **Deploy:**
+   ```bash
+   vercel deploy --prod
+   ```
+
+**Important:** Authentication is handled client-side, so the admin routes are accessible via URL. The login page will redirect unauthenticated users automatically.
 
 ### Security Recommendations
 
