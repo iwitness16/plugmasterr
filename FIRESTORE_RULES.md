@@ -26,6 +26,30 @@ service cloud.firestore {
 
 5. Click **Publish** to save the rules
 
+## Rules for Admin Dashboard Access
+
+To allow the admin dashboard to read orders, update the rules to allow read access:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /orders/{orderId} {
+      // Allow anyone to create orders (for public order form)
+      allow create: if true;
+      
+      // Allow reading orders for admin dashboard
+      // Note: For production, implement Firebase Auth with admin claims
+      allow read: if true; // Temporary - enable for admin dashboard
+      
+      // Disable update/delete for now
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}
+```
+
 ## More Secure Rules (Recommended for Production)
 
 For better security, you can add validation:
