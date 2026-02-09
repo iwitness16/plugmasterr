@@ -1,4 +1,5 @@
 'use client';
+// Contact us page
 
 import React from 'react';
 import { ShoppingCart, ChevronUp } from 'lucide-react';
@@ -22,11 +23,11 @@ export default function ContactUsPage() {
                 <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
                   IDMASTER
                 </div>
-                <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
+                <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV Hologram</div>
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigationn */}
             <div className="hidden lg:flex space-x-8">
               <Link href="/" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">HOME</Link>
               <Link href="/product-info" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">PRODUCT INFO</Link>
