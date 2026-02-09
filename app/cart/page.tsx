@@ -205,10 +205,10 @@ export default function CartPage() {
           console.error('Email sending failed (order still saved):', emailError);
         }
         
-        return orderId;
+        return { orderId, orderData };
       });
 
-      await Promise.all(orderPromises);
+      const orderResults = await Promise.all(orderPromises);
 
       // Remove submitted items from cart
       const submittedIds = selectedItems.map(item => item.id);
@@ -217,18 +217,43 @@ export default function CartPage() {
 
       setSubmitSuccess(true);
 
-      // Reset after showing success message
-      setTimeout(() => {
-        setSubmitSuccess(false);
-        if (cartItems.filter(item => !submittedIds.includes(item.id)).length === 0) {
-          router.push('/');
+      // Build combined order summary for order-confirmed page (WhatsApp option)
+      const summaryLines: string[] = [];
+      summaryLines.push('New Cart Order - IDPLUGMASTER');
+      summaryLines.push('');
+      orderResults.forEach((result, index) => {
+        const { orderId, orderData } = result as any;
+        summaryLines.push(`Order ${index + 1}:`);
+        summaryLines.push(`- Order ID: ${orderId}`);
+        summaryLines.push(`- Product: ${orderData.product}`);
+        summaryLines.push(`- Quantity: ${orderData.quantity}`);
+        summaryLines.push(`- Total Price: $${orderData.totalPrice}`);
+        summaryLines.push(`- Payment Method: ${orderData.paymentMethod || ''}`);
+        summaryLines.push(
+          `- Name: ${orderData.firstName} ${orderData.middleName || ''} ${orderData.lastName}`.trim()
+        );
+        summaryLines.push(`- Email: ${orderData.email}`);
+        summaryLines.push(`- Contact (${orderData.social}): ${orderData.socialValue}`);
+        if (orderData.address) {
+          summaryLines.push(`- Address: ${orderData.address}`);
         }
-      }, 3000);
+        summaryLines.push('');
+      });
+
+      const summaryText = summaryLines.join('\n');
+
+      // Store summary for order-confirmed page and redirect
+      // Use window.location.href instead of router.push to force full page reload
+      // This ensures Smartsupp properly detects the URL change for automated messages
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('orderConfirmationSummary', summaryText);
+        window.location.href = '/order-confirmed';
+      }
 
     } catch (error: any) {
       console.error('Error during checkout:', error);
       setSubmitError(error.message || 'Failed to checkout. Please try again.');
-      // Ensure we reset the submitting state even on error
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -559,24 +584,19 @@ export default function CartPage() {
                 disabled={selectedCount === 0 || isSubmitting}
                 className="flex-1 px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
               >
-                {isSubmitting ? 'Processing...' : 'Checkout'}
+                {isSubmitting ? 'Processing...' : 'Place Order'}
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Floating Support Buttons */}
-      <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
-        <button 
-          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
-          onClick={() => window.open('https://wa.me/16266659178', '_blank')}
+      {/* Floating Back-to-top Button */}
+      <div className="fixed left-4 bottom-4 z-30">
+        <button
+          className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </button>
-        <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />
         </button>
       </div>

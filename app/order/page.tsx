@@ -232,142 +232,11 @@ function OrderPageContent() {
     setSubmitSuccess(false);
 
     try {
-      // Validate required fields
-      if (!formData.socialValue.trim()) {
-        throw new Error('Please provide your contact information');
-      }
-      if (!formData.email.trim()) {
-        throw new Error('Please provide your email');
-      }
-      if (!formData.firstName.trim()) {
-        throw new Error('Please provide your first name');
-      }
-      if (!formData.lastName.trim()) {
-        throw new Error('Please provide your last name');
-      }
-      if (!formData.birthday.trim()) {
-        throw new Error('Please provide your birthday');
-      }
-      if (!formData.heightFeet || !formData.heightInches) {
-        throw new Error('Please provide your height');
-      }
-      if (!photoFile && photoPreview === '/images/sample.png') {
-        throw new Error('Please upload your photo');
-      }
-      if (!formData.paymentMethod.trim()) {
-        throw new Error('Please select a payment method');
-      }
-
-      // Convert files to base64 with compression
-      let photoBase64: string | null = null;
-      let signatureBase64: string | null = null;
-
-      if (photoFile) {
-        photoBase64 = await convertFileToBase64(photoFile);
-        // Ensure compressed image is under 1MB (Firestore limit)
-        if (photoBase64 && photoBase64.length > 1000000) {
-          throw new Error('Photo is too large even after compression. Please use a smaller image (max 1MB).');
-        }
-      } else if (photoPreview && photoPreview !== '/images/sample.png') {
-        // If it's already a base64 string, check size
-        if (photoPreview.length > 1000000) {
-          throw new Error('Photo is too large. Please upload a new, smaller image (max 1MB).');
-        }
-        photoBase64 = photoPreview;
-      }
-
-      if (signatureFile) {
-        signatureBase64 = await convertFileToBase64(signatureFile);
-        // Ensure compressed signature is under 1MB
-        if (signatureBase64 && signatureBase64.length > 1000000) {
-          throw new Error('Signature is too large even after compression. Please use a smaller image (max 1MB).');
-        }
-      } else if (signaturePreview && signaturePreview !== '/images/sample2.png') {
-        // If it's already a base64 string, check size
-        if (signaturePreview.length > 1000000) {
-          throw new Error('Signature is too large. Please upload a new, smaller image (max 1MB).');
-        }
-        signatureBase64 = signaturePreview;
-      }
-
-      // Prepare order data
-      const orderData = {
-        product: formData.product,
-        quantity: quantity,
-        totalPrice: totalPrice,
-        social: formData.social,
-        socialValue: formData.socialValue,
-        email: formData.email,
-        firstName: formData.firstName,
-        middleName: formData.middleName,
-        lastName: formData.lastName,
-        sex: formData.sex,
-        birthday: formData.birthday,
-        hairColor: formData.hairColor,
-        eyesColor: formData.eyesColor,
-        heightFeet: formData.heightFeet,
-        heightInches: formData.heightInches,
-        weight: formData.weight,
-        address: formData.address,
-        customize: formData.customize,
-        paymentMethod: formData.paymentMethod,
-        photo: photoBase64,
-        signature: signatureBase64,
-      };
-
-      // Submit to Firestore
-      const orderId = await submitOrder(orderData);
-      
-      // Send email notification
-      const orderDate = new Date().toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZoneName: 'short'
-      });
-      
-      await sendOrderEmail({
-        ...orderData,
-        orderId,
-        orderDate,
-      });
-      
-      setSubmitSuccess(true);
-      
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          product: 'California',
-          social: 'WhatsApp',
-          socialValue: '',
-          email: '',
-          firstName: '',
-          middleName: '',
-          lastName: '',
-          sex: 'Male',
-          birthday: '',
-          hairColor: 'Black',
-          eyesColor: 'Brown',
-          heightFeet: '',
-          heightInches: '',
-          weight: '160',
-          address: '',
-          customize: '',
-          paymentMethod: '',
-        });
-        setPhotoPreview('/images/sample.png');
-        setSignaturePreview('/images/sample2.png');
-        setPhotoFile(null);
-        setSignatureFile(null);
-        setQuantity(1);
-        setSubmitSuccess(false);
-      }, 3000);
-
+      // Reuse existing add-to-cart validation and logic, then go to cart page
+      await handleAddToCart();
     } catch (error: any) {
-      console.error('Error submitting order:', error);
-      setSubmitError(error.message || 'Failed to submit order. Please try again.');
+      console.error('Error during checkout redirect:', error);
+      setSubmitError(error.message || 'Failed to proceed to cart. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -1239,17 +1108,12 @@ function OrderPageContent() {
         </div>
       </footer>
 
-      {/* Floating Support Buttons */}
-      <div className="fixed right-4 bottom-4 flex flex-col space-y-3 z-40">
-        <button 
-          className="bg-[#25D366] text-white p-2 sm:p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition flex items-center justify-center aspect-square"
-          onClick={() => window.open('https://wa.me/16266659178', '_blank')}
+      {/* Floating Back-to-top Button (moved to bottom-left to avoid WhatsApp widget) */}
+      <div className="fixed left-4 bottom-4 z-30">
+        <button
+          className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </button>
-        <button className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <ChevronUp className="w-6 h-6" />
         </button>
       </div>
