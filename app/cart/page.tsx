@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { getCartItems, updateCartItem, removeFromCart, clearCart, type CartItem } from '@/lib/cart';
 import { submitOrder } from '@/lib/firestore';
 import { useRouter } from 'next/navigation';
-import { sendOrderEmail } from '@/lib/email';
 
 export default function CartPage() {
   const router = useRouter();
@@ -183,28 +182,10 @@ export default function CartPage() {
         };
 
         const orderId = await submitOrder(orderData);
-        
-        // Send email notification (don't block on email errors)
-        try {
-          const orderDate = new Date().toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          });
-          
-          await sendOrderEmail({
-            ...orderData,
-            orderId,
-            orderDate,
-          });
-        } catch (emailError) {
-          // Log email error but don't fail the order
-          console.error('Email sending failed (order still saved):', emailError);
-        }
-        
+
+        // Email notifications have been intentionally disabled for orders.
+        // The order is still fully saved to Firestore and visible in the admin dashboard.
+
         return { orderId, orderData };
       });
 
@@ -577,7 +558,7 @@ export default function CartPage() {
                 href="/product-list"
                 className="flex-1 px-4 sm:px-6 py-2 sm:py-3 border-2 border-red-500 text-red-500 rounded-lg font-medium hover:bg-red-50 transition text-center text-xs sm:text-sm"
               >
-                Continue adding
+                Continue adding 
               </Link>
               <button
                 onClick={handleCheckout}

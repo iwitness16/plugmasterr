@@ -49,7 +49,7 @@ export default function FAQPage() {
     },
     {
       id: 'cost',
-      question: 'How much do the cards cost?',
+      question: 'How much do the cards cost?',//yug87
       answer: (
         <div className="space-y-3">
           <div>
@@ -60,7 +60,7 @@ export default function FAQPage() {
               <li>Buy 4-9 cards: $280-$630 ($70 per piece)</li>
               <li>Buy 10+ cards: $650+ ($65 per piece)</li>
             </ul>
-          </div>
+          </div> 
           <div>
             <p className="font-semibold mb-2">【Note】 There are additional charges for shipping, as follows:</p>
             <ul className="list-disc list-inside space-y-1 ml-2">

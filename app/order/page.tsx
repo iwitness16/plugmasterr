@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { submitOrder } from '@/lib/firestore';
 import { addToCart, getCartItemCount } from '@/lib/cart';
 import { useRouter } from 'next/navigation';
-import { sendOrderEmail } from '@/lib/email';
 
 function OrderPageContent() {
   const searchParams = useSearchParams();

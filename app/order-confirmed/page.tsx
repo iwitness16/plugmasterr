@@ -20,33 +20,36 @@ export default function OrderConfirmedPage() {
     // sessionStorage.removeItem(ORDER_SUMMARY_KEY);
   }, []);
 
-  // Automatically open Smartsupp chat when page loads
+  // Automatically open Smartsupp chat and prefill message with order details
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (!orderSummary) return;
 
-    const openSmartsuppChat = () => {
+    const openAndPrefillSmartsuppChat = () => {
       const w = window as any;
-      
+
       // Check if Smartsupp is loaded
       if (w.smartsupp && typeof w.smartsupp === 'function') {
         try {
-          // Show the chat widget
+          // Show and open the chat widget
           w.smartsupp('chat:show');
-          // Open the chat window automatically
           w.smartsupp('chat:open');
+
+          // Prefill the chat input with the full order details
+          w.smartsupp('chat:message', orderSummary);
         } catch (error) {
-          console.log('Smartsupp chat open error:', error);
+          console.log('Smartsupp chat open/prefill error:', error);
         }
       }
     };
 
     // Try immediately (in case Smartsupp is already loaded)
-    openSmartsuppChat();
+    openAndPrefillSmartsuppChat();
 
-    // Also try after a short delay to ensure Smartsupp script has loaded
-    const timeout1 = setTimeout(openSmartsuppChat, 500);
-    const timeout2 = setTimeout(openSmartsuppChat, 1500);
-    const timeout3 = setTimeout(openSmartsuppChat, 3000);
+    // Also try after short delays to ensure Smartsupp script has loaded
+    const timeout1 = setTimeout(openAndPrefillSmartsuppChat, 500);
+    const timeout2 = setTimeout(openAndPrefillSmartsuppChat, 1500);
+    const timeout3 = setTimeout(openAndPrefillSmartsuppChat, 3000);
 
     // Cleanup timeouts
     return () => {
@@ -54,7 +57,7 @@ export default function OrderConfirmedPage() {
       clearTimeout(timeout2);
       clearTimeout(timeout3);
     };
-  }, []);
+  }, [orderSummary]);
 
   const handleSendViaWhatsApp = () => {
     const text = orderSummary || 'Order placed - IDPLUGMASTER';

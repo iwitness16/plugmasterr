@@ -27,7 +27,7 @@ const getRandomImage = (productName: string, category: 'USA ID' | 'CANADA ID' | 
     if (productName === 'Quebec') {
       return '/images/quebec.jpg';
     }
-    return '/images/canada.jpg'; // fallback
+    return '/images/canada.jpg'; // fallbackgutfvutg
   }
   return TEMPLATE_IMAGE;
 };
