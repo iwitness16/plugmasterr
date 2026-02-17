@@ -20,44 +20,6 @@ export default function OrderConfirmedPage() {
     // sessionStorage.removeItem(ORDER_SUMMARY_KEY);
   }, []);
 
-  // Automatically open Smartsupp chat and prefill message with order details
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!orderSummary) return;
-
-    const openAndPrefillSmartsuppChat = () => {
-      const w = window as any;
-
-      // Check if Smartsupp is loaded
-      if (w.smartsupp && typeof w.smartsupp === 'function') {
-        try {
-          // Show and open the chat widget
-          w.smartsupp('chat:show');
-          w.smartsupp('chat:open');
-
-          // Prefill the chat input with the full order details
-          w.smartsupp('chat:message', orderSummary);
-        } catch (error) {
-          console.log('Smartsupp chat open/prefill error:', error);
-        }
-      }
-    };
-
-    // Try immediately (in case Smartsupp is already loaded)
-    openAndPrefillSmartsuppChat();
-
-    // Also try after short delays to ensure Smartsupp script has loaded
-    const timeout1 = setTimeout(openAndPrefillSmartsuppChat, 500);
-    const timeout2 = setTimeout(openAndPrefillSmartsuppChat, 1500);
-    const timeout3 = setTimeout(openAndPrefillSmartsuppChat, 3000);
-
-    // Cleanup timeouts
-    return () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      clearTimeout(timeout3);
-    };
-  }, [orderSummary]);
 
   const handleSendViaWhatsApp = () => {
     const text = orderSummary || 'Order placed - IDPLUGMASTER';

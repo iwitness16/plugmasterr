@@ -37,10 +37,15 @@ export interface EmailOrderData {
   orderDate: string;
 }
 
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_bigfkqb';
+const EMAILJS_TEMPLATE_ID = 'template_hjnqpdp';
+const EMAILJS_PUBLIC_KEY = 'XevhZMgO7VeepgRZR';
+
 export const sendOrderEmail = async (orderData: EmailOrderData): Promise<void> => {
   try {
     // Initialize EmailJS with your public key
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 
     // Prepare template parameters
     const templateParams = {
@@ -69,11 +74,7 @@ export const sendOrderEmail = async (orderData: EmailOrderData): Promise<void> =
     };
 
     // Send email using EmailJS
-    await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
-      templateParams
-    );
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
 
     console.log('Order email sent successfully');
   } catch (error: any) {
