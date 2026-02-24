@@ -11,16 +11,17 @@
     "deploy:hosting": "npm run build && npx firebase deploy --only hosting"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "firebase": "^11.10.0",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",
+    "nodemailer": "^8.0.1",
     "react": "19.2.1",
     "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
