@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail({
       from: `"IDPLUGMASTER Orders" <${user}>`,
-      to: 'orders@idplugmaster.com',
+      to: user,
       replyTo: data.email,
       subject: `New Order #${data.orderId} - ${data.product}`,
       html,

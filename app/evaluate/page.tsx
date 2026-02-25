@@ -499,7 +499,7 @@ export default function EvaluatePage() {
                 <p><span className="font-semibold">Address:</span> 548 Market St Suite 96966, San Francisco, CA 94104</p>
                 <p><span className="font-semibold">WhatsApp:</span> 6266659178</p>
                 <p><span className="font-semibold">Telegram:</span> ID_Master2</p>
-                <p><span className="font-semibold">Email:</span> orders@idplugmaster.com</p>
+                <p><span className="font-semibold">Email:</span> idmaster.orders@gmail.com</p>
                 <div className="flex space-x-3 mt-4">
                   <a href="#" className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
