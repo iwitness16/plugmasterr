@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { getCartItems, updateCartItem, removeFromCart, clearCart, type CartItem } from '@/lib/cart';
 import { submitOrder } from '@/lib/firestore';
 import { useRouter } from 'next/navigation';
-import { sendOrderEmail } from '@/lib/email';
 
 export default function CartPage() {
   const router = useRouter();
@@ -183,28 +182,6 @@ export default function CartPage() {
         };
 
         const orderId = await submitOrder(orderData);
-        
-        // Send email notification (don't block on email errors)
-        try {
-          const orderDate = new Date().toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          });
-          
-          await sendOrderEmail({
-            ...orderData,
-            orderId,
-            orderDate,
-          });
-        } catch (emailError) {
-          // Log email error but don't fail the order
-          console.error('Email sending failed (order still saved):', emailError);
-        }
-        
         return { orderId, orderData };
       });
 

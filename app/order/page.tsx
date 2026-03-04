@@ -333,8 +333,18 @@ function OrderPageContent() {
       {/* Main Content */}
       <div className="pt-32 sm:pt-40 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Order Instruction Card */}
-      
+          {/* WhatsApp ordering notice */}
+          <div className="mb-8">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 sm:p-5">
+              <h2 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">
+                Orders are completed on WhatsApp
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-700">
+                Please fill in your card details and add your order to the cart. After checkout you will see a WhatsApp button with your order summary. 
+                All orders are confirmed, paid and updated directly in WhatsApp so we can respond faster and handle your request more securely.
+              </p>
+            </div>
+          </div>
 
           {/* Product Display and Order Info Section */}
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
@@ -1008,8 +1018,8 @@ function OrderPageContent() {
                   <option value="">Select Payment Method</option>
                   <option value="Cryptocurrency">Cryptocurrency</option>
                   <option value="Apple Pay">Apple Pay</option>
-                  <option value="Bank Transfer">Gift Card</option>
-                  <option value="Bank Transfer">Chime</option>
+                  <option value="Gift Card">Gift Card</option>
+                  <option value="Chime">Chime</option>
                   <option value="CashApp">CashApp</option>
                   <option value="Zelle">Zelle</option>
                   <option value="Bank Transfer">Bank Transfer</option>
