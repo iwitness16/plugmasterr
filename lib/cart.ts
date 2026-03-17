@@ -7,7 +7,7 @@ export interface CartItem {
   formData: {
     social: string;
     socialValue: string;
-    email: string;
+    email?: string;
     firstName: string;
     middleName: string;
     lastName: string;

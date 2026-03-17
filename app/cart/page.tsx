@@ -163,7 +163,7 @@ export default function CartPage() {
           totalPrice: totalPrice,
           social: item.formData.social,
           socialValue: item.formData.socialValue,
-          email: item.formData.email,
+          email: item.formData.email ?? '',
           firstName: item.formData.firstName,
           middleName: item.formData.middleName,
           lastName: item.formData.lastName,
