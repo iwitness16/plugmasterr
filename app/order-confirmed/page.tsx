@@ -5,7 +5,7 @@ import { ShoppingCart, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const ADMIN_WHATSAPP_NUMBER = '16266659178';
+const ADMIN_WHATSAPP_NUMBER = '13478649962';
 const ORDER_SUMMARY_KEY = 'orderConfirmationSummary';
 
 export default function OrderConfirmedPage() {
@@ -122,7 +122,7 @@ export default function OrderConfirmedPage() {
               </button>
             </div>
             <p className="text-gray-500 text-xs mt-4">
-              If the WhatsApp button does not open automatically, you can also copy this page text and send it to us manually at WhatsApp number +1&nbsp;626&nbsp;665&nbsp;9178.
+              If the WhatsApp button does not open automatically, you can also copy this page text and send it to us manually at WhatsApp number +1&nbsp;347&nbsp;864&nbsp;9962.
             </p>
           </div>
 
