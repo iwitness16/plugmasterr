@@ -3,10 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 import FontLoader from "../components/FontLoader";
 import WhatsAppWidget from "../components/WhatsAppWidget";
-import SiteShutdownScreen from "../components/SiteShutdownScreen";
-import { SITE_SHUTDOWN_ENABLED } from "../lib/site-shutdown";
 
-const normalMetadata: Metadata = {
+export const metadata: Metadata = {
   title: "IDPLUGMASTER - Premium Fake ID Cards",
   description:
     "Top Fake ID Maker - Building Premium, Authentic-Looking and Scannable Fake IDs",
@@ -16,17 +14,6 @@ const normalMetadata: Metadata = {
     apple: "/images/icon.png",
   },
 };
-
-const shutdownMetadata: Metadata = {
-  title: "Domain suspended – reported fraudulent activity",
-  description:
-    "This website is no longer available following verified reports of scam and fraudulent activity.",
-  robots: { index: false, follow: false, nocache: true },
-};
-
-export async function generateMetadata(): Promise<Metadata> {
-  return SITE_SHUTDOWN_ENABLED ? shutdownMetadata : normalMetadata;
-}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -40,16 +27,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  if (SITE_SHUTDOWN_ENABLED) {
-    return (
-      <html lang="en">
-        <body className="site-shutdown-active antialiased">
-          <SiteShutdownScreen />
-        </body>
-      </html>
-    );
-  }
-
   return (
     <html lang="en">
       <body className="antialiased">
