@@ -181,3 +181,25 @@ h6 {
   opacity: 1 !important;
   z-index: 2 !important;
 }
+
+/* Site-wide takedown / abuse notice (see lib/site-shutdown.ts) */
+@keyframes site-shutdown-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 72px rgba(220, 38, 38, 0.55);
+    transform: scale(1.02);
+  }
+}
+
+.site-shutdown-pulse {
+  animation: site-shutdown-pulse 2.2s ease-in-out infinite;
+}
+
+body.site-shutdown-active {
+  overflow: hidden !important;
+  cursor: not-allowed;
+}
