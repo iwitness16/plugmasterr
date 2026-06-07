@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
     });
 
     await transporter.sendMail({
-      from: `"IDPLUGMASTER Orders" <${user}>`,
+      from: `"IDCARDSMEN Orders" <${user}>`,
       to: user,
       replyTo: data.email,
       subject: `New Order #${data.orderId} - ${data.product}`,

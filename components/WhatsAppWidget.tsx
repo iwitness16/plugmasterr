@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const WHATSAPP_NUMBER = '13478649962';
+const WHATSAPP_NUMBER = '13344468194';
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(true);

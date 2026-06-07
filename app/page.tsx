@@ -16,12 +16,12 @@ export default function LandingPage() {
             <Link href="/" className="flex items-center space-x-3">
               <img 
                 src="/images/logo.jpg" 
-                alt="IDMASTER Logo" 
+                alt="best fake id Logo" 
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
                 <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
-                  IDMASTER
+                  IDCARDSMEN
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
               </div>
@@ -36,7 +36,7 @@ export default function LandingPage() {
               <Link href="/use-guide" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">USE GUIDE</Link>
               <Link href="/evaluate" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">EVALUATE</Link>
               <Link href="/faq" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">FAQ</Link>
-              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT US</Link>
+              <Link href="/contact-us" className="hover:text-yellow-green transition text-xs sm:text-sm text-gray-300">CONTACT THE BEST FAKE ID MAKER</Link>
             </div>
 
             {/* Cart Icon */}
@@ -56,7 +56,7 @@ export default function LandingPage() {
               <Link href="/product-list" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">PRODUCT LIST</Link>
               <Link href="/use-guide" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">USE GUIDE</Link>
               <Link href="/faq" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">FAQ</Link>
-              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT US</Link>
+              <Link href="/contact-us" className="text-gray-300 hover:text-yellow-green transition text-xs sm:text-sm whitespace-nowrap">CONTACT THE BEST FAKE ID MAKER</Link>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function LandingPage() {
             {/* Left Column - Text Content */}
             <div className="text-center lg:text-left lg:order-1">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold mb-3 sm:mb-4">
-                <span className="text-yellow-green">Top Fake ID Maker</span>
+                <span className="text-yellow-green">Best Fake ID Maker</span>
               </h1>
               <p className="text-sm sm:text-base lg:text-lg mb-2 sm:mb-3">
                 Building Premium, Authentic-Looking and Scannable <span className="text-yellow-green">Fake IDs</span> for you
@@ -98,10 +98,10 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
                 <div className="flex items-center space-x-3">
                   <div className="flex -space-x-2">
-                    <img src="/images/man1.jpg" alt="Customer 1" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
-                    <img src="/images/man2.jpg" alt="Customer 2" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
-                    <img src="/images/man3.jpg" alt="Customer 3" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
-                    <img src="/images/man4.jpg" alt="Customer 4" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
+                    <img src="/images/man1.jpg" alt="best fake id 1" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
+                    <img src="/images/man2.jpg" alt="best fake id 2" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
+                    <img src="/images/man3.jpg" alt="best fake id 3" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
+                    <img src="/images/man4.jpg" alt="best fake id 4" className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover border-2 border-gray-900" />
                   </div>
                   <div>
                     <div className="text-base sm:text-lg font-semibold text-yellow-green">20.5K+</div>
@@ -126,7 +126,7 @@ export default function LandingPage() {
               <div className="rounded-lg">
                 <img 
                   src="/images/landinggirl.jpg" 
-                  alt="Person holding ID card" 
+                  alt="best fake id card" 
                   className="rounded-lg w-full h-auto max-h-[500px] object-contain"
                   onError={(e) => {
                     console.error('Image failed to load:', e);
@@ -140,7 +140,7 @@ export default function LandingPage() {
               <div className="rounded-lg">
                 <img 
                   src="/images/landinggirl.jpg" 
-                  alt="Person holding ID card" 
+                  alt="best fake id card holder" 
                   className="rounded-lg w-full h-auto max-h-[500px] object-contain"
                   onError={(e) => {
                     console.error('Image failed to load:', e);
@@ -155,7 +155,7 @@ export default function LandingPage() {
 
       {/* Section Divider */}
       <section className="py-6 px-4 text-center">
-        <h2 className="text-lg sm:text-xl font-display font-semibold">Tens of Thousands Choose Us for Quality and Reliability</h2>
+        <h2 className="text-lg sm:text-xl font-display font-semibold">Tens of Thousands Choose Us for Quality and Because We are the Best Fake ID Maker</h2>
       </section>
 
       {/* Stats Section */}
@@ -194,7 +194,7 @@ export default function LandingPage() {
       {/* Hot Products Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-3 sm:mb-4">Hot Fake ID / Fake Driver License</h2>
+          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-3 sm:mb-4">Best Fake ID / Fake Driver License</h2>
           <Link href="/product-list" className="block text-center text-yellow-green mb-8 sm:mb-12 cursor-pointer hover:underline">View more &gt;</Link>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
@@ -239,25 +239,25 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             <div className="text-center">
               <div className="mb-2 sm:mb-3 flex items-center justify-center h-40 sm:h-56 md:h-64">
-                <img src="/images/idfront.jpg" alt="Front" className="max-w-full max-h-full object-contain" />
+                <img src="/images/idfront.jpg" alt="best fake id front" className="max-w-full max-h-full object-contain" />
               </div>
               <p className="font-medium text-xs sm:text-sm text-gray-300">Front</p>
             </div>
             <div className="text-center">
               <div className="mb-2 sm:mb-3 flex items-center justify-center h-40 sm:h-56 md:h-64">
-                <img src="/images/idback.jpg" alt="Back" className="max-w-full max-h-full object-contain" />
+                <img src="/images/idback.jpg" alt="best fake id Back" className="max-w-full max-h-full object-contain" />
               </div>
               <p className="font-medium text-xs sm:text-sm text-gray-300">Back</p>
             </div>
             <div className="text-center">
               <div className="mb-2 sm:mb-3 flex items-center justify-center h-40 sm:h-56 md:h-64">
-                <img src="/images/uvfront.jpg" alt="Front (UV)" className="max-w-full max-h-full object-contain" />
+                <img src="/images/uvfront.jpg" alt="best fake id Front (UV)" className="max-w-full max-h-full object-contain" />
               </div>
               <p className="font-medium text-xs sm:text-sm text-gray-300">Front (UV)</p>
             </div>
             <div className="text-center">
               <div className="mb-2 sm:mb-3 flex items-center justify-center h-40 sm:h-56 md:h-64">
-                <img src="/images/uvback.jpg" alt="Back (UV)" className="max-w-full max-h-full object-contain" />
+                <img src="/images/uvback.jpg" alt="best fake id Back (UV)" className="max-w-full max-h-full object-contain" />
               </div>
               <p className="font-medium text-xs sm:text-sm text-gray-300">Back (UV)</p>
             </div>
@@ -296,7 +296,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-display font-semibold mb-4">
-                Make Fake ID more Authentic and more Secure
+                Make Best Fake IDs which are more Authentic and more Secure
               </h2>
               <p className="text-sm sm:text-base text-gray-300 mb-6">
                 Our Fake ID cards are carefully designed in every detail and use advanced security elements such as holograms, UV printing, anti-counterfeiting, embossing, laser, etc. to ensure greater authenticity and security
@@ -326,7 +326,7 @@ export default function LandingPage() {
             </div>
             <div className="relative">
               <div className="flex items-center justify-center">
-                <img src="/images/make.jpg" alt="Make Fake ID more Authentic and Secure" className="w-full h-auto max-h-96 object-contain" />
+                <img src="/images/make.jpg" alt="Make Best Fake ID more Authentic and Secure" className="w-full h-auto max-h-96 object-contain" />
               </div>
             </div>
           </div>
@@ -343,7 +343,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             <div className="relative">
               <div className="flex items-center justify-center h-64">
-                <img src="/images/ordertemp.png" alt="Fake ID Card" className="max-w-full max-h-full object-contain" />
+                <img src="/images/ordertemp.png" alt="Best Fake ID Card" className="max-w-full max-h-full object-contain" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
@@ -442,11 +442,11 @@ export default function LandingPage() {
       {/* How to Get Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-8">How to Get Your Fake ID</h2>
+          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-8">How to Get the Best Fake ID</h2>
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             <div className="relative">
               <div className="flex items-center justify-center">
-                <img src="/images/delivery.jpg" alt="Delivery" className="w-full h-auto max-h-96 object-contain" />
+                <img src="/images/delivery.jpg" alt="Best Fake ID Delivery" className="w-full h-auto max-h-96 object-contain" />
               </div>
             </div>
             <div className="space-y-4">
@@ -495,7 +495,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="bg-gray-800 p-4 sm:p-6 rounded-lg">
-              <h3 className="text-base sm:text-lg font-semibold text-yellow-green mb-2">✓ Delivered within 10 Days</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-yellow-green mb-2">✓ Best Fake IDs Delivered within 10 Days</h3>
               <p className="text-gray-300 text-xs sm:text-sm">
                 From the day of ordering, the package will be received within 10 days.
               </p>
@@ -535,12 +535,12 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center mb-8">
             <div className="relative">
               <div className="flex items-center justify-center">
-                <img src="/images/cards.jpg" alt="ID Cards" className="w-full h-auto max-h-96 object-contain" />
+                <img src="/images/cards.jpg" alt="Best Fake ID Cards" className="w-full h-auto max-h-96 object-contain" />
               </div>
             </div>
             <div className="space-y-4">
               <p className="text-xs sm:text-sm text-gray-300">
-                idplugmaster is the industry-leading Fake ID card production website. The website provides you with high-quality, legal, scannable Fake ID cards from all Canadian and US states, using high-tech printing technology to ensure that each card passes all security tests.
+                idcardsmen is the industry-leading Fake ID card production website. The website provides you with high-quality, legal, scannable Fake ID cards from all Canadian and US states, using high-tech printing technology to ensure that each card passes all security tests.
               </p>
               <p className="text-xs sm:text-sm text-gray-300">
                 We can help you obtain high-quality Fake ID cards with holograms and UV logos to ensure clear visibility under UV light. Our cards are not only scannable, but also embossed and laser technology to perfectly replicate the real driver's license.
@@ -597,28 +597,28 @@ export default function LandingPage() {
       {/* Reviews Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-3">Good reviews display wall</h2>
+          <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-3">Good reviews display wall for the Best Fake ID Maker</h2>
           <p className="text-center text-xs sm:text-sm mb-6">We have served many customers and are trustworthy.</p>
           
           {/* Chat Screenshots Grid */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6">
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev1.png" alt="Review 1" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev1.png" alt="Best Fake ID Review 1" className="max-w-full max-h-full object-contain w-full" />
             </div>
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev2.png" alt="Review 2" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev2.png" alt="Best Fake ID Review 2" className="max-w-full max-h-full object-contain w-full" />
             </div>
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev3.png" alt="Review 3" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev3.png" alt="Best Fake ID Review 3" className="max-w-full max-h-full object-contain w-full" />
             </div>
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev4.png" alt="Review 4" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev4.png" alt="Best Fake ID Review 4" className="max-w-full max-h-full object-contain w-full" />
             </div>
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev5.png" alt="Review 5" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev5.png" alt="Best Fake ID Review 5" className="max-w-full max-h-full object-contain w-full" />
             </div>
             <div className="flex items-center justify-center h-40 sm:h-56 md:h-80 lg:h-96">
-              <img src="/images/rev6.png" alt="Review 6" className="max-w-full max-h-full object-contain w-full" />
+              <img src="/images/rev6.png" alt="Best Fake ID Review 6" className="max-w-full max-h-full object-contain w-full" />
             </div>
           </div>
           
@@ -668,23 +668,23 @@ export default function LandingPage() {
             <div>
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-300">About</h3>
               <div className="space-y-1 sm:space-y-1.5 text-gray-400 text-xs">
-                <p><span className="font-semibold">Company:</span> IDPLUGMASTER Inc.</p>
+                <p><span className="font-semibold">Company:</span> IDCARDSMEN Inc.</p>
                 <p><span className="font-semibold">Address:</span> 548 Market St Suite 96966, San Francisco, CA 94104</p>
-                <p><span className="font-semibold">WhatsApp:</span> +1 347 864 9962</p>
-                <p><span className="font-semibold">Telegram:</span> ID_Master2</p>
-                <p><span className="font-semibold">Email:</span> idmaster.orders@gmail.com</p>
+                <p><span className="font-semibold">WhatsApp:</span> +1 334 446 8194</p>
+                <p><span className="font-semibold">Telegram:</span> IDCARDSMEN01</p>
+                <p><span className="font-semibold">Email:</span> idcardsmen.orders@gmail.com</p>
                 <div className="flex space-x-3 mt-4">
-                  <a href="https://wa.me/13478649962" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
+                  <a href="https://wa.me/13344468194" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
                     <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
                   </a>
-                  <a href="https://t.me/ID_Master2" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+                  <a href="https://t.me/IDCARDSMEN01" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121L7.116 13.815l-2.91-.907c-.632-.196-.642-.632.135-.936l11.37-4.364c.526-.194.988.12.817.936z"/>
                     </svg>
                   </a>
-                  <a href="mailto:idmaster.orders@gmail.com" className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-orange-600 transition">
+                  <a href="mailto:idcardsmen.orders@gmail.com" className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-orange-600 transition">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
@@ -696,7 +696,7 @@ export default function LandingPage() {
 
           {/* Copyright */}
           <div className="text-center pt-6 sm:pt-8 mt-8 sm:mt-12 border-t border-gray-800">
-            <p className="text-gray-500 text-xs sm:text-sm">Copyright © 2026, idmasterplug, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Copyright © 2026, idcardsmen, All Rights Reserved</p>
           </div>
         </div>
       </footer>

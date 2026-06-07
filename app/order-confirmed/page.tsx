@@ -5,7 +5,7 @@ import { ShoppingCart, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const ADMIN_WHATSAPP_NUMBER = '13478649962';
+const ADMIN_WHATSAPP_NUMBER = '13344468194';
 const ORDER_SUMMARY_KEY = 'orderConfirmationSummary';
 
 export default function OrderConfirmedPage() {
@@ -22,7 +22,7 @@ export default function OrderConfirmedPage() {
 
 
   const handleSendViaWhatsApp = () => {
-    const text = orderSummary || 'Order placed - IDPLUGMASTER';
+    const text = orderSummary || 'Order placed - IDCARDSMEN';
     const url = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
@@ -36,12 +36,12 @@ export default function OrderConfirmedPage() {
             <Link href="/" className="flex items-center space-x-3">
               <img
                 src="/images/logo.jpg"
-                alt="IDMASTER Logo"
+                alt="IDCARDSMEN Logo"
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
                 <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
-                  IDMASTER
+                  IDCARDSMEN
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
               </div>
@@ -122,7 +122,7 @@ export default function OrderConfirmedPage() {
               </button>
             </div>
             <p className="text-gray-500 text-xs mt-4">
-              If the WhatsApp button does not open automatically, you can also copy this page text and send it to us manually at WhatsApp number +1&nbsp;347&nbsp;864&nbsp;9962.
+              If the WhatsApp button does not open automatically, you can also copy this page text and send it to us manually at WhatsApp number +1&nbsp;334&nbsp;446&nbsp;8194.
             </p>
           </div>
 

@@ -46,12 +46,12 @@ export default function AdminLoginPage() {
           <Link href="/" className="inline-flex items-center space-x-3 mb-4">
             <img 
               src="/images/logo.jpg" 
-              alt="IDMASTER Logo" 
+              alt="IDCARDSMEN Logo" 
               className="h-12 w-12 object-contain rounded-lg"
             />
             <div className="flex flex-col">
               <div className="text-yellow-green text-xl font-display font-semibold tracking-tight">
-                IDMASTER
+                IDCARDSMEN
               </div>
               <div className="text-xs text-gray-400 font-sans">Admin Dashboard</div>
             </div>

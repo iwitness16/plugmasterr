@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - IDPLUGMASTER",
+  title: "Admin Dashboard - IDCARDSMEN",
   description: "Admin dashboard for managing orders",
   robots: {
     index: false,

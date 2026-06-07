@@ -5,9 +5,9 @@ import FontLoader from "../components/FontLoader";
 import WhatsAppWidget from "../components/WhatsAppWidget";
 
 export const metadata: Metadata = {
-  title: "IDPLUGMASTER - Premium Fake ID Cards",
+  title: "Best Fake ID Maker | Premium Scannable Fake IDs | IDCARDSMEN",
   description:
-    "Top Fake ID Maker - Building Premium, Authentic-Looking and Scannable Fake IDs",
+    "Best Fake ID Maker offering premium scannable fake IDs with holograms, UV features, and fast worldwide delivery.",
   icons: {
     icon: "/images/icon.png",
     shortcut: "/images/icon.png",

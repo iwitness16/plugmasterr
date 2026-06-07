@@ -196,7 +196,7 @@ export default function CartPage() {
 
       // Build combined order summary for order-confirmed page (WhatsApp option)
       const summaryLines: string[] = [];
-      summaryLines.push('New Cart Order - IDPLUGMASTER');
+      summaryLines.push('New Cart Order - IDCARDSMEN');
       summaryLines.push('');
       orderResults.forEach((result, index) => {
         const { orderId, orderData } = result as any;
@@ -245,12 +245,12 @@ export default function CartPage() {
             <Link href="/" className="flex items-center space-x-3">
               <img 
                 src="/images/logo.jpg" 
-                alt="IDMASTER Logo" 
+                alt="IDCARDSMEN Logo" 
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
                 <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
-                  IDMASTER
+                  IDCARDSMEN
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
               </div>
