@@ -42,7 +42,9 @@ export interface OrderData {
   status: string;
 }
 
-export const submitOrder = async (orderData: Omit<OrderData, 'createdAt' | 'status'>): Promise<string> => {
+export const submitOrder = async (
+  orderData: Omit<OrderData, 'createdAt' | 'status'>
+): Promise<string> => {
   try {
     const orderWithMetadata: OrderData = {
       ...orderData,
@@ -50,20 +52,49 @@ export const submitOrder = async (orderData: Omit<OrderData, 'createdAt' | 'stat
       status: 'pending',
     };
 
-    const docRef = await addDoc(collection(db, 'orders'), orderWithMetadata);
+    const docRef = await addDoc(
+      collection(db, 'orders'),
+      orderWithMetadata
+    );
+
+    // Send admin email notification
+    try {
+      await fetch('/api/send-order-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...orderData,
+          orderId: docRef.id,
+          orderDate: new Date().toLocaleString(),
+        }),
+      });
+    } catch (emailError) {
+      console.error(
+        'Order saved but email notification failed:',
+        emailError
+      );
+    }
+
     return docRef.id;
   } catch (error: any) {
     console.error('Error submitting order:', error);
-    
-    // Provide more helpful error messages
+
     if (error.code === 'permission-denied') {
-      throw new Error('Permission denied. Please check your Firestore security rules. Orders collection must allow writes.');
+      throw new Error(
+        'Permission denied. Please check your Firestore security rules. Orders collection must allow writes.'
+      );
     } else if (error.code === 'unavailable') {
-      throw new Error('Firestore is unavailable. Please check your internet connection and Firebase configuration.');
+      throw new Error(
+        'Firestore is unavailable. Please check your internet connection and Firebase configuration.'
+      );
     } else if (error.message) {
       throw new Error(error.message);
     } else {
-      throw new Error('Failed to submit order. Please try again or contact support.');
+      throw new Error(
+        'Failed to submit order. Please try again or contact support.'
+      );
     }
   }
 };
