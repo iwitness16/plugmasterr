@@ -70,6 +70,9 @@ export default function FaqContent() {
               <li>Standard shipping: 10-14 days, $20</li>
             </ul>
           </div>
+          <p className="text-sm text-gray-600 mt-2">
+            See our full <a href="/how-much-do-fake-ids-cost" className="text-yellow-600 hover:underline font-medium">fake ID pricing guide</a> for a complete breakdown including bulk discounts.
+          </p>
         </div>
       )
     },
@@ -169,6 +172,19 @@ export default function FaqContent() {
         <div className="space-y-2">
           <p>Absolutely. We take your privacy very seriously.</p>
           <p>If you are concerned about your personal or bank details being linked to your order, we recommend that you pay with cryptocurrency.</p>
+        </div>
+      )
+    },
+    {
+      id: 'best-state',
+      question: 'Which state should I choose for my fake ID?',
+      answer: (
+        <div className="space-y-2">
+          <p>California, Texas, and Florida are the most popular choices because they have large populations and staff everywhere are familiar with them.</p>
+          <p>Ohio and Pennsylvania are good under-the-radar picks — fewer people outside those states know exactly what they should look like.</p>
+          <p>
+            Read our full guide: <a href="/best-states-for-fake-ids" className="text-yellow-600 hover:underline font-medium">Best States for Fake IDs</a>.
+          </p>
         </div>
       )
     }
@@ -358,7 +374,7 @@ export default function FaqContent() {
 
           {/* Copyright */}
           <div className="text-center pt-6 sm:pt-8 mt-8 sm:mt-12 border-t border-gray-800">
-            <p className="text-gray-500 text-xs sm:text-sm">Copyright © 2026, idcardsmenplug, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Copyright {'\u00A9'} 2026, idcardsmenplug, All Rights Reserved</p>
           </div>
         </div>
       </footer>

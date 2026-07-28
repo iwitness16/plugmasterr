@@ -329,7 +329,7 @@ export default function ProductListContent() {
             <p><span className="font-semibold text-gray-300">Company:</span> IDCARDSMEN Inc. · <span className="font-semibold text-gray-300">WhatsApp:</span> +1 334 446 8194 · <span className="font-semibold text-gray-300">Email:</span> idcardsmen.orders@gmail.com</p>
           </div>
           <div className="text-center pt-4 border-t border-gray-800">
-            <p className="text-gray-500 text-xs">Copyright © 2026, idcardsmen, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
           </div>
         </div>
       </footer>

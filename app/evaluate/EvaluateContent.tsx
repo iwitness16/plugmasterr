@@ -533,7 +533,7 @@ export default function EvaluateContent() {
 
           {/* Copyright */}
           <div className="text-center pt-6 sm:pt-8 mt-8 sm:mt-12 border-t border-gray-800">
-            <p className="text-gray-500 text-xs sm:text-sm">Copyright © 2026, idcardsmen, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
           </div>
         </div>
       </footer>

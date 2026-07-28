@@ -693,6 +693,15 @@ export default function HomeContent() {
               </div>
             </div>
 
+            {/* Guides */}
+            <div>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Guides {'&'} Resources</h3>
+              <div className="flex flex-wrap gap-x-3 sm:gap-x-6 gap-y-1.5 sm:gap-y-2">
+                <Link href="/best-states-for-fake-ids" className="text-gray-400 hover:text-yellow-green transition text-xs">BEST STATES FOR FAKE IDS</Link>
+                <Link href="/how-much-do-fake-ids-cost" className="text-gray-400 hover:text-yellow-green transition text-xs">HOW MUCH DO FAKE IDS COST</Link>
+              </div>
+            </div>
+
             {/* Related Policies */}
             <div>
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Related Policies</h3>
@@ -737,7 +746,7 @@ export default function HomeContent() {
 
           {/* Copyright */}
           <div className="text-center pt-6 sm:pt-8 mt-8 sm:mt-12 border-t border-gray-800">
-            <p className="text-gray-500 text-xs sm:text-sm">Copyright © 2026, idcardsmen, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
           </div>
         </div>
       </footer>
