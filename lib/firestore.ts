@@ -57,26 +57,7 @@ export const submitOrder = async (
       orderWithMetadata
     );
 
-    // Send admin email notification
-    try {
-      await fetch('/api/send-order-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...orderData,
-          orderId: docRef.id,
-          orderDate: new Date().toLocaleString(),
-        }),
-      });
-    } catch (emailError) {
-      console.error(
-        'Order saved but email notification failed:',
-        emailError
-      );
-    }
-
+    // Email is sent by the checkout flow (cart/order page), not here
     return docRef.id;
   } catch (error: any) {
     console.error('Error submitting order:', error);

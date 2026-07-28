@@ -219,11 +219,32 @@ export default function CartPage() {
 
       const summaryText = summaryLines.join('\n');
 
-      // Store summary for order-confirmed page and redirect
-      // Use window.location.href instead of router.push to force full page reload
-      // This ensures Smartsupp properly detects the URL change for automated messages
+      // Send emails for each order simultaneously
+      const emailPromises = orderResults.map(async (result) => {
+        const { orderId, orderData } = result as any;
+        const orderDate = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+        try {
+          await fetch('/api/send-order-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...orderData, orderId, orderDate }),
+          });
+        } catch (e) {
+          console.error('Email send failed (non-blocking):', e);
+        }
+      });
+
+      // Fire emails without blocking the UI
+      Promise.all(emailPromises).catch(console.error);
+
+      // Store summary and WhatsApp URL in sessionStorage
+      const waMessage = summaryLines.join('\n');
+      const waUrl = `https://wa.me/13344468194?text=${encodeURIComponent(waMessage)}`;
+
       if (typeof window !== 'undefined') {
         sessionStorage.setItem('orderConfirmationSummary', summaryText);
+        sessionStorage.setItem('orderWhatsAppUrl', waUrl);
+        // Redirect to order-confirmed — WhatsApp will auto-open from that page on load
         window.location.href = '/order-confirmed';
       }
 
@@ -297,7 +318,7 @@ export default function CartPage() {
         </div>
       </nav>
 
-      <style jsx>{`
+      <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }

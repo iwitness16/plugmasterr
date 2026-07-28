@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block admin and cart pages from being indexed
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /order-confirmed/
+
+Sitemap: https://idcardsmen.com/sitemap.xml

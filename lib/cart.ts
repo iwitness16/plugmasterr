@@ -28,7 +28,7 @@ export interface CartItem {
   createdAt: number;
 }
 
-const CART_STORAGE_KEY = 'idplugmaster_cart';
+const CART_STORAGE_KEY = 'idcardsmen_cart';
 
 export const getCartItems = (): CartItem[] => {
   if (typeof window === 'undefined') return [];
