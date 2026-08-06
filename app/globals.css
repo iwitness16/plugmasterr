@@ -23,6 +23,22 @@
   box-sizing: border-box;
 }
 
+/* Force inputs/selects/textareas to always show dark text on white background
+   regardless of device dark mode — prevents invisible text on mobile */
+input,
+select,
+textarea {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+}
+
 html {
   overflow-x: hidden;
   width: 100%;

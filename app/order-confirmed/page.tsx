@@ -24,16 +24,20 @@ export default function OrderConfirmedPage() {
     const finalUrl = storedUrl || `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(summary || 'New order placed - IDCARDSMEN')}`;
     setWaUrl(finalUrl);
 
-    // Auto-open WhatsApp immediately on page load (works on mobile & most desktop)
-    // Small delay to ensure the page has rendered first
-    const waTimer = setTimeout(() => {
-      window.open(finalUrl, '_blank');
-    }, 600);
+    // Desktop fallback: try to open WhatsApp in new tab
+    // (mobile already handled this via location.href in cart checkout)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (!isMobile && storedUrl) {
+      const waTimer = setTimeout(() => {
+        window.open(finalUrl, '_blank');
+      }, 500);
+      return () => {
+        clearTimeout(t);
+        clearTimeout(waTimer);
+      };
+    }
 
-    return () => {
-      clearTimeout(t);
-      clearTimeout(waTimer);
-    };
+    return () => clearTimeout(t);
   }, []);
 
   return (

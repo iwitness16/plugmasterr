@@ -244,8 +244,21 @@ export default function CartPage() {
       if (typeof window !== 'undefined') {
         sessionStorage.setItem('orderConfirmationSummary', summaryText);
         sessionStorage.setItem('orderWhatsAppUrl', waUrl);
-        // Redirect to order-confirmed — WhatsApp will auto-open from that page on load
-        window.location.href = '/order-confirmed';
+
+        // On mobile: use location.href to open WhatsApp (avoids popup blocker)
+        // then redirect to confirmed page after brief delay
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+          // Open WhatsApp via location, then redirect after 1.5s
+          window.location.href = waUrl;
+          setTimeout(() => {
+            window.location.href = '/order-confirmed';
+          }, 1500);
+        } else {
+          // Desktop: open in new tab is generally allowed right after user action
+          window.open(waUrl, '_blank');
+          window.location.href = '/order-confirmed';
+        }
       }
 
     } catch (error: any) {

@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`;
 
-  // ── Customer confirmation email HTML ──────────────────────────────────────
+  // ── Customer confirmation email HTML 
   const customerHtml = `
 <!DOCTYPE html>
 <html>
