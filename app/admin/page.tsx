@@ -141,7 +141,7 @@ export default function AdminDashboard() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-300 text-sm">
-                Welcome, <span className="text-yellow-green font-semibold">{getAdminUsername()}</span>
+                Welcome Back, <span className="text-yellow-green font-semibold">{getAdminUsername()}</span>
               </span>
               <button
                 onClick={handleLogout}
