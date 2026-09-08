@@ -40,10 +40,10 @@ export const metadata: Metadata = {
       "Buy the best fake IDs online — scannable, UV hologram, real DMV templates. All US states, Canada & UK. Starting from $65.",
     images: [
       {
-        url: `${BASE_URL}/images/idfront.jpg`,
+        url: `${BASE_URL}/images/logo.jpg`,
         width: 1200,
         height: 630,
-        alt: "Best Fake ID - Scannable Fake ID Card - IDPlugSource",
+        alt: "IDPlugSource - Best Fake ID Maker Logo",
       },
     ],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDPlugSource",
     description:
       "Buy the best fake IDs online — scannable, UV hologram, real DMV templates. All US states, Canada & UK.",
-    images: [`${BASE_URL}/images/idfront.jpg`],
+    images: [`${BASE_URL}/images/logo.jpg`],
   },
   icons: {
     icon: [
@@ -83,7 +83,7 @@ const jsonLd = {
     "IDPlugSource is the best fake ID maker offering premium scannable fake IDs with UV hologram, barcode, and real DMV templates for all US states, Canada and UK.",
   url: BASE_URL,
   logo: `${BASE_URL}/images/logo.jpg`,
-  image: `${BASE_URL}/images/idfront.jpg`,
+  image: `${BASE_URL}/images/logo.jpg`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "548 Market St Suite 96966",
