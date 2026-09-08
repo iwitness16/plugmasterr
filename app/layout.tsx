@@ -166,7 +166,7 @@ export default function RootLayout({
         <Script id="smartsupp-chat" strategy="lazyOnload">
           {`
             var _smartsupp = _smartsupp || {};
-            _smartsupp.key = '5848571d6eaea8b2afad94cfa782bd367d993b1c';
+            _smartsupp.key = 'f85ef9d4010ffc1a13c44876fb7b236a5d8c9fda';
             _smartsupp.orientation = "right";
             window.smartsupp||(function(d) {
               var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
