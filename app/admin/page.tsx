@@ -128,12 +128,12 @@ export default function AdminDashboard() {
               <Link href="/" className="flex items-center space-x-3">
                 <img 
                   src="/images/logo.jpg" 
-                  alt="IDCARDSMEN Logo" 
+                  alt="IDPlugSource Logo" 
                   className="h-10 w-10 object-contain rounded-lg"
                 />
                 <div className="flex flex-col">
                   <div className="text-yellow-green text-lg font-display font-semibold tracking-tight">
-                    IDCARDSMEN
+                    IDPlugSource
                   </div>
                   <div className="text-xs text-gray-400 font-sans">Admin Dashboard</div>
                 </div>

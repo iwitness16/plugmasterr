@@ -196,7 +196,7 @@ export default function CartPage() {
 
       // Build combined order summary for order-confirmed page (WhatsApp option)
       const summaryLines: string[] = [];
-      summaryLines.push('New Cart Order - IDCARDSMEN');
+      summaryLines.push('New Cart Order - IDPlugSource');
       summaryLines.push('');
       orderResults.forEach((result, index) => {
         const { orderId, orderData } = result as any;
@@ -239,7 +239,7 @@ export default function CartPage() {
 
       // Store summary and WhatsApp URL in sessionStorage
       const waMessage = summaryLines.join('\n');
-      const waUrl = `https://wa.me/13344468194?text=${encodeURIComponent(waMessage)}`;
+      const waUrl = `https://wa.me/19124844702?text=${encodeURIComponent(waMessage)}`;
 
       if (typeof window !== 'undefined') {
         sessionStorage.setItem('orderConfirmationSummary', summaryText);
@@ -279,12 +279,12 @@ export default function CartPage() {
             <Link href="/" className="flex items-center space-x-3">
               <img 
                 src="/images/logo.jpg" 
-                alt="IDCARDSMEN Logo" 
+                alt="IDPlugSource Logo" 
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg"
               />
               <div className="flex flex-col">
                 <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">
-                  IDCARDSMEN
+                  IDPlugSource
                 </div>
                 <div className="text-xs text-gray-400 hidden sm:block font-sans">Scannable UV hologram</div>
               </div>
@@ -410,7 +410,7 @@ export default function CartPage() {
                         <td className="px-3 sm:px-4 py-3">
                           <div className="flex flex-col items-center space-y-2">
                             <div className="font-medium text-gray-800 text-xs sm:text-sm text-center w-full">{item.product}</div>
-                            <div className="watermarked-image w-24 h-16 sm:w-32 sm:h-20 relative flex-shrink-0 flex items-center justify-center">
+                            <div className="w-24 h-16 sm:w-32 sm:h-20 relative flex-shrink-0 flex items-center justify-center">
                               <img
                                 src={item.image}
                                 alt={item.product}
@@ -484,7 +484,7 @@ export default function CartPage() {
                       />
                       <div className="flex-1 flex flex-col items-center space-y-2">
                         <div className="font-medium text-gray-800 text-xs sm:text-sm text-center w-full">{item.product}</div>
-                        <div className="watermarked-image w-full max-w-[200px] h-24 sm:h-32 relative flex items-center justify-center">
+                        <div className="w-full max-w-[200px] h-24 sm:h-32 relative flex items-center justify-center">
                           <img
                             src={item.image}
                             alt={item.product}

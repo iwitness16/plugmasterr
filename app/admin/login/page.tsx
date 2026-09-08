@@ -46,12 +46,12 @@ export default function AdminLoginPage() {
           <Link href="/" className="inline-flex items-center space-x-3 mb-4">
             <img 
               src="/images/logo.jpg" 
-              alt="IDCARDSMEN Logo" 
+              alt="IDPlugSource Logo" 
               className="h-12 w-12 object-contain rounded-lg"
             />
             <div className="flex flex-col">
               <div className="text-yellow-green text-xl font-display font-semibold tracking-tight">
-                IDCARDSMEN
+                IDPlugSource
               </div>
               <div className="text-xs text-gray-400 font-sans">Admin Dashboard</div>
             </div>
@@ -88,7 +88,7 @@ export default function AdminLoginPage() {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
+                  className="admin-input w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
                   placeholder="Enter username"
                   required
                   autoComplete="username"
@@ -109,7 +109,7 @@ export default function AdminLoginPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
+                  className="admin-input w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-green focus:border-transparent"
                   placeholder="Enter password"
                   required
                   autoComplete="current-password"

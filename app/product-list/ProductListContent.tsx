@@ -13,8 +13,8 @@ const PRODUCT_IMAGES: Record<string, string> = {
   'California CDL': '/images/california.jpg', 'Colorado': '/images/colorado.jpg',
   'Connecticut': '/images/connecticut.jpg', 'Delaware': '/images/delaware.jpg',
   'Florida': '/images/florida.jpg', 'Florida Motorcycle': '/images/florida.jpg',
-  'Georgia': '/images/georgia.jpg', 'Illinois': '/images/ordertemp.png',
-  'Illinois CDL': '/images/ordertemp.png', 'Indiana': '/images/indiana.jpg',
+  'Georgia': '/images/georgia.jpg', 'Illinois': '/images/maintemplate.png',
+  'Illinois CDL': '/images/maintemplate.png', 'Indiana': '/images/indiana.jpg',
   'Kansas': '/images/kansas.jpg', 'Maryland': '/images/maryland.jpg',
   'Massachusetts': '/images/massachusetts.jpg', 'Michigan': '/images/michigan.jpg',
   'Minnesota': '/images/minnesota.jpg', 'Mississippi': '/images/mississippi.jpg',
@@ -39,8 +39,8 @@ const PRODUCT_IMAGES: Record<string, string> = {
 
 function getProductImage(name: string, category: string): string {
   if (PRODUCT_IMAGES[name]) return PRODUCT_IMAGES[name];
-  if (category === 'UK ID') return '/images/uk.jpg';
-  return '/images/ordertemp.png';
+  if (category === 'UK ID') return '/images/maintemplate.png';
+  return '/images/maintemplate.png';
 }
 
 // ─── Product data ─────────────────────────────────────────────────────────────
@@ -123,9 +123,9 @@ function SiteNav({ cartCount }: { cartCount: number }) {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-3">
-            <img src="/images/logo.jpg" alt="IDCARDSMEN Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
+            <img src="/images/logo.jpg" alt="IDPlugSource Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
             <div className="flex flex-col">
-              <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDCARDSMEN</div>
+              <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDPlugSource</div>
               <div className="text-xs text-gray-400 hidden sm:block">Scannable UV hologram</div>
             </div>
           </Link>
@@ -169,7 +169,7 @@ function ProductCard({ product }: { product: Product }) {
         onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
         <img src={product.image} alt={`Buy fake ${product.name} ID - scannable fake driver license`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? 'opacity-0' : 'opacity-100'}`} />
-        <img src="/images/uvback.jpg" alt={`${product.name} UV back view`}
+        <img src="/images/maintemplate.png" alt={`${product.name} UV back view`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`} />
         <span className="absolute top-2 right-2 bg-black/70 text-yellow-green text-xs font-bold px-2 py-0.5 rounded-full z-10">{cur}{product.price}</span>
       </div>
@@ -223,7 +223,7 @@ export default function ProductListContent() {
       {/* Hero banner */}
       <div className="pt-16 sm:pt-20">
         <div className="w-full h-44 sm:h-56 lg:h-64 relative overflow-hidden">
-          <img src="/images/bgimg.png" alt="Buy fake IDs online - IDCARDSMEN product catalogue" className="w-full h-full object-cover" />
+          <img src="/images/bgimg.png" alt="Buy fake IDs online - IDPlugSource product catalogue" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40" />
         </div>
       </div>
@@ -326,10 +326,10 @@ export default function ProductListContent() {
             ))}
           </div>
           <div className="text-gray-400 text-xs space-y-1 mb-6">
-            <p><span className="font-semibold text-gray-300">Company:</span> IDCARDSMEN Inc. · <span className="font-semibold text-gray-300">WhatsApp:</span> +1 334 446 8194 · <span className="font-semibold text-gray-300">Email:</span> idcardsmen.orders@gmail.com</p>
+            <p><span className="font-semibold text-gray-300">Company:</span> IDPlugSource Inc. · <span className="font-semibold text-gray-300">WhatsApp:</span> +1 (912) 484-4702 · <span className="font-semibold text-gray-300">Email:</span> idplugsource@gmail.com</p>
           </div>
           <div className="text-center pt-4 border-t border-gray-800">
-            <p className="text-gray-500 text-xs">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
+            <p className="text-gray-500 text-xs">Copyright {'\u00A9'} 2026, IDPlugSource, All Rights Reserved</p>
           </div>
         </div>
       </footer>

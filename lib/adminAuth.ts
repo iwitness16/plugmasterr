@@ -1,6 +1,6 @@
 // Admin authentication utilities
-const ADMIN_USERNAME = 'showyoo';
-const ADMIN_PASSWORD = 'Showyoo123#';
+const ADMIN_USERNAME = 'zanku';
+const ADMIN_PASSWORD = 'Zanku123#';
 const AUTH_TOKEN_KEY = 'admin_auth_token';
 
 // Simple token generation (for client-side only)

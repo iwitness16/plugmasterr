@@ -24,19 +24,31 @@
 }
 
 /* Force inputs/selects/textareas to always show dark text on white background
-   regardless of device dark mode — prevents invisible text on mobile */
-input,
-select,
-textarea {
+   regardless of device dark mode — prevents invisible text on mobile.
+   Excluded on .admin-input to allow dark-themed admin forms. */
+input:not(.admin-input),
+select:not(.admin-input),
+textarea:not(.admin-input) {
   color: #111827 !important;
   background-color: #ffffff !important;
   -webkit-text-fill-color: #111827 !important;
 }
 
-input::placeholder,
-textarea::placeholder {
+input:not(.admin-input)::placeholder,
+textarea:not(.admin-input)::placeholder {
   color: #6b7280 !important;
   -webkit-text-fill-color: #6b7280 !important;
+}
+
+/* Admin dark-theme inputs */
+.admin-input {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.admin-input::placeholder {
+  color: #9ca3af !important;
+  -webkit-text-fill-color: #9ca3af !important;
 }
 
 html {
@@ -115,69 +127,37 @@ h6 {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* Custom Yellow-Green Color */
+/* Custom Sky Blue Color (brand accent) */
 .text-yellow-green {
-  color: #efff00;
+  color: #38bdf8;
 }
 
 .bg-yellow-green {
-  background-color: #efff00;
+  background-color: #38bdf8;
 }
 
 .border-yellow-green {
-  border-color: #efff00;
+  border-color: #38bdf8;
 }
 
 .hover\:bg-yellow-green:hover {
-  background-color: #efff00;
+  background-color: #38bdf8;
 }
 
 .hover\:text-yellow-green:hover {
-  color: #ffea00;
+  color: #0ea5e9;
 }
 
-/* Additional utility classes for yellow-green */
+/* Additional utility classes for sky blue */
 .text-yellow-green-hover:hover {
-  color: #ffea00;
+  color: #0ea5e9;
 }
 
 .bg-yellow-green-hover:hover {
-  background-color: #ffea00;
+  background-color: #0ea5e9;
 }
 
-/* Watermark overlay for images */
-.watermarked-image {
-  position: relative !important;
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-}
 
-.watermarked-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  position: relative;
-  z-index: 0;
-}
-
-.watermarked-image::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 70% !important;
-  height: 70% !important;
-  background-image: url('/images/watermark.png') !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: contain !important;
-  opacity: 0.7 !important;
-  pointer-events: none !important;
-  z-index: 999 !important;
-}
 
 /* Product image hover effect */
 .hover-image-container {

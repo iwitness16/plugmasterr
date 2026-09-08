@@ -2,28 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'How Much Do Fake IDs Cost in 2026? Full Pricing Guide | IDCARDSMEN',
+  title: 'How Much Do Fake IDs Cost in 2026? Full Pricing Guide | IDPlugSource',
   description:
     'How much do fake IDs cost? Single cards from $65, bulk discounts available. Full pricing breakdown including shipping, production time, and what affects the price.',
   keywords:
     'how much do fake ids cost, how much are fake ids, how much does a fake id cost, fake id cost, fake id price, fake id reviews, cheap fake ids, buy fake ids',
   openGraph: {
-    title: 'How Much Do Fake IDs Cost in 2026? Full Pricing Guide | IDCARDSMEN',
+    title: 'How Much Do Fake IDs Cost in 2026? Full Pricing Guide | IDPlugSource',
     description:
       'Complete fake ID pricing guide: single cards from $65, bulk discounts, shipping costs, and production times explained.',
-    url: 'https://idcardsmen.com/how-much-do-fake-ids-cost',
-    siteName: 'IDCARDSMEN',
-    images: [{ url: 'https://idcardsmen.com/images/idfront.jpg', width: 1200, height: 630, alt: 'How Much Do Fake IDs Cost - IDCARDSMEN Pricing' }],
+    url: 'https://IDPlugSource.com/how-much-do-fake-ids-cost',
+    siteName: 'IDPlugSource',
+    images: [{ url: 'https://IDPlugSource.com/images/idfront.jpg', width: 1200, height: 630, alt: 'How Much Do Fake IDs Cost - IDPlugSource Pricing' }],
     type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How Much Do Fake IDs Cost in 2026? | IDCARDSMEN',
+    title: 'How Much Do Fake IDs Cost in 2026? | IDPlugSource',
     description: 'Complete fake ID pricing: from $65 per card. Bulk discounts, shipping options, and delivery times.',
-    images: ['https://idcardsmen.com/images/idfront.jpg'],
+    images: ['https://IDPlugSource.com/images/idfront.jpg'],
   },
   alternates: {
-    canonical: 'https://idcardsmen.com/how-much-do-fake-ids-cost',
+    canonical: 'https://IDPlugSource.com/how-much-do-fake-ids-cost',
   },
 };
 
@@ -42,7 +42,7 @@ const shippingOptions = [
 const faqItems = [
   {
     q: 'How much does a fake ID typically cost?',
-    a: 'A single high-quality fake ID from IDCARDSMEN costs $100. Bulk orders get progressively cheaper — $90/card for 2–3, $80/card for 4–9, and $70/card for 10 or more. Shipping is additional ($20 standard, $30 express).',
+    a: 'A single high-quality fake ID from IDPlugSource costs $100. Bulk orders get progressively cheaper — $90/card for 2–3, $80/card for 4–9, and $70/card for 10 or more. Shipping is additional ($20 standard, $30 express).',
   },
   {
     q: 'Why do some fake IDs cost only $30–$50?',
@@ -82,9 +82,9 @@ export default function PricingPage() {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-3">
-              <img src="/images/logo.jpg" alt="IDCARDSMEN Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
+              <img src="/images/logo.jpg" alt="IDPlugSource Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDCARDSMEN</div>
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDPlugSource</div>
                 <div className="text-xs text-gray-400 hidden sm:block">Scannable UV hologram</div>
               </div>
             </Link>
@@ -127,7 +127,7 @@ export default function PricingPage() {
 
           {/* Pricing table */}
           <section className="mb-14">
-            <h2 className="text-2xl font-display font-bold text-gray-900 mb-2">IDCARDSMEN Fake ID Pricing</h2>
+            <h2 className="text-2xl font-display font-bold text-gray-900 mb-2">IDPlugSource Fake ID Pricing</h2>
             <p className="text-gray-600 text-sm mb-6">All prices in USD. UK IDs priced in GBP (£90 per card).</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {pricingTiers.map((tier) => (
@@ -298,7 +298,7 @@ export default function PricingPage() {
               <Link key={href} href={href} className="text-gray-400 hover:text-yellow-green text-xs">{label}</Link>
             ))}
           </div>
-          <p className="text-gray-600 text-xs">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
+          <p className="text-gray-600 text-xs">Copyright {'\u00A9'} 2026, IDPlugSource, All Rights Reserved</p>
         </div>
       </footer>
     </div>

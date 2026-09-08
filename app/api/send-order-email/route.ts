@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
   <div style="background:#fff;border-radius:8px;padding:30px;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
     <div style="background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);color:#c8f135;padding:20px;border-radius:8px 8px 0 0;margin:-30px -30px 30px -30px;text-align:center;">
       <h1 style="margin:0;font-size:24px;color:#c8f135;">🆕 New Order Received</h1>
-      <p style="margin:8px 0 0;color:#ccc;font-size:14px;">IDCARDSMEN — Order Management</p>
+      <p style="margin:8px 0 0;color:#ccc;font-size:14px;">IDPlugSource — Order Management</p>
     </div>
     <div style="background:#f8f9fa;border-left:4px solid #c8f135;padding:15px;margin:20px 0;border-radius:4px;">
       <p style="margin:4px 0"><strong>Order ID:</strong> #${data.orderId}</p>
@@ -100,11 +100,11 @@ export async function POST(request: NextRequest) {
   <div style="background:#fff;border-radius:8px;padding:30px;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
     <div style="background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);color:#c8f135;padding:24px 20px;border-radius:8px 8px 0 0;margin:-30px -30px 30px -30px;text-align:center;">
       <h1 style="margin:0;font-size:26px;color:#c8f135;">✅ Order Received!</h1>
-      <p style="margin:8px 0 0;color:#ccc;font-size:14px;">Thank you for choosing IDCARDSMEN</p>
+      <p style="margin:8px 0 0;color:#ccc;font-size:14px;">Thank you for choosing IDPlugSource</p>
     </div>
 
     <p style="font-size:16px;">Hi <strong>${data.firstName}</strong>,</p>
-    <p>Thank you for placing your order with <strong>IDCARDSMEN</strong> — the #1 trusted source for premium scannable fake IDs.</p>
+    <p>Thank you for placing your order with <strong>IDPlugSource</strong> — the #1 trusted source for premium scannable fake IDs.</p>
     <p>We have received your order and our team will be in touch with you <strong>very shortly</strong> via WhatsApp or email to confirm your order details and guide you through the payment process.</p>
 
     <div style="background:#f8f9fa;border-left:4px solid #c8f135;padding:15px;margin:20px 0;border-radius:4px;">
@@ -127,60 +127,80 @@ export async function POST(request: NextRequest) {
     </div>
 
     <div style="text-align:center;margin:24px 0;">
-      <a href="https://wa.me/13344468194" style="background:#25D366;color:#fff;padding:12px 28px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:14px;display:inline-block;">
+      <a href="https://wa.me/19124844702" style="background:#25D366;color:#fff;padding:12px 28px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:14px;display:inline-block;">
         💬 Chat with us on WhatsApp
       </a>
     </div>
 
     <p style="font-size:13px;color:#888;margin-top:24px;">If you have any questions before we reach out, feel free to contact us directly:</p>
     <ul style="font-size:13px;color:#555;margin:0;padding-left:20px;">
-      <li>WhatsApp: <a href="https://wa.me/13344468194" style="color:#25D366;">+1 334 446 8194</a></li>
-      <li>Telegram: <a href="https://t.me/IDCARDSMEN01" style="color:#229ED9;">@IDCARDSMEN01</a></li>
-      <li>Email: <a href="mailto:idcardsmen.orders@gmail.com" style="color:#333;">idcardsmen.orders@gmail.com</a></li>
+      <li>WhatsApp: <a href="https://wa.me/19124844702" style="color:#25D366;">+1 (912) 484-4702</a></li>
+      <li>Telegram: <a href="https://t.me/fakeidplugsource10" style="color:#229ED9;">@fakeidplugsource10</a></li>
+      <li>Email: <a href="mailto:idplugsource@gmail.com" style="color:#333;">idplugsource@gmail.com</a></li>
     </ul>
 
     <p style="font-size:13px;color:#aaa;margin-top:20px;border-top:1px solid #eee;padding-top:16px;">
-      This email was sent because an order was placed on <a href="https://idcardsmen.com" style="color:#c8f135;">idcardsmen.com</a>. If you did not place this order, please ignore this email.
+      This email was sent because an order was placed on <a href="https://IDPlugSource.com" style="color:#c8f135;">IDPlugSource.com</a>. If you did not place this order, please ignore this email.
     </p>
   </div>
 </body>
 </html>`;
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: { user, pass },
-    });
+    // Build mail options first so they can be reused across transporter retries
+    const adminOpts: nodemailer.SendMailOptions = {
+      from: `"IDPlugSource Orders" <${user}>`,
+      to: user,
+      replyTo: data.email || data.socialValue,
+      subject: `🆕 New Order #${data.orderId} — ${data.product} (${fullName})`,
+      html: adminHtml,
+      text: `New Order #${data.orderId}\nProduct: ${data.product}\nCustomer: ${fullName}\nContact: ${data.socialValue}\nTotal: ${currency}${data.totalPrice}`,
+    };
 
-    // Send both emails simultaneously
-    const emailPromises: Promise<any>[] = [
-      // Admin notification
-      transporter.sendMail({
-        from: `"IDCARDSMEN Orders" <${user}>`,
-        to: user,
-        replyTo: data.email || data.socialValue,
-        subject: `🆕 New Order #${data.orderId} — ${data.product} (${fullName})`,
-        html: adminHtml,
-        text: `New Order #${data.orderId}\nProduct: ${data.product}\nCustomer: ${fullName}\nContact: ${data.socialValue}\nTotal: ${currency}${data.totalPrice}`,
-      }),
-    ];
+    const customerOpts: nodemailer.SendMailOptions | null =
+      data.email && data.email.includes('@')
+        ? {
+            from: `"IDPlugSource" <${user}>`,
+            to: data.email,
+            subject: `✅ Order Confirmed #${data.orderId} — IDPlugSource`,
+            html: customerHtml,
+            text: `Hi ${data.firstName}, thank you for your order #${data.orderId} (${data.product}). We will contact you on WhatsApp (${data.socialValue}) shortly to confirm details and arrange payment. Total: ${currency}${data.totalPrice}.`,
+          }
+        : null;
 
-    // Customer confirmation — only if they provided an email
-    if (data.email && data.email.includes('@')) {
-      emailPromises.push(
-        transporter.sendMail({
-          from: `"IDCARDSMEN" <${user}>`,
-          to: data.email,
-          subject: `✅ Order Confirmed #${data.orderId} — IDCARDSMEN`,
-          html: customerHtml,
-          text: `Hi ${data.firstName}, thank you for your order #${data.orderId} (${data.product}). We will contact you on WhatsApp (${data.socialValue}) shortly to confirm details and arrange payment. Total: ${currency}${data.totalPrice}.`,
-        })
-      );
+    const sendVia = async (port: number, secure: boolean) => {
+      const t = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port,
+        secure,
+        auth: { user, pass },
+        family: 4,
+        connectionTimeout: 12000,
+        greetingTimeout: 12000,
+        socketTimeout: 20000,
+      });
+      const jobs: Promise<any>[] = [t.sendMail(adminOpts)];
+      if (customerOpts) jobs.push(t.sendMail(customerOpts));
+      await Promise.all(jobs);
+    };
+
+    // Port 465 (SSL) → 587 (STARTTLS) → 2525 (alt STARTTLS)
+    // Many ISPs block 587; 465 and 2525 are less commonly blocked.
+    const SOCKET_ERRORS = ['ESOCKET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'ENETUNREACH'];
+    try {
+      await sendVia(465, true);
+    } catch (e1: any) {
+      if (!SOCKET_ERRORS.includes(e1.code)) throw e1;
+      console.warn(`Port 465 failed (${e1.code}), trying 587…`);
+      try {
+        await sendVia(587, false);
+      } catch (e2: any) {
+        if (!SOCKET_ERRORS.includes(e2.code)) throw e2;
+        console.warn(`Port 587 failed (${e2.code}), trying 2525…`);
+        await sendVia(2525, false);
+      }
     }
 
-    await Promise.all(emailPromises);
     return NextResponse.json({ success: true });
   } catch (err: any) {
     console.error('Nodemailer error:', err);

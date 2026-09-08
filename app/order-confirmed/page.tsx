@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const ADMIN_WHATSAPP = '13344468194';
+const ADMIN_WHATSAPP = '19124844702';
 const WA_URL_KEY = 'orderWhatsAppUrl';
 const SUMMARY_KEY = 'orderConfirmationSummary';
 
@@ -21,7 +21,7 @@ export default function OrderConfirmedPage() {
     const storedUrl = sessionStorage.getItem(WA_URL_KEY);
     const summary = sessionStorage.getItem(SUMMARY_KEY);
 
-    const finalUrl = storedUrl || `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(summary || 'New order placed - IDCARDSMEN')}`;
+    const finalUrl = storedUrl || `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(summary || 'New order placed - IDPlugSource')}`;
     setWaUrl(finalUrl);
 
     // Desktop fallback: try to open WhatsApp in new tab
@@ -110,7 +110,7 @@ export default function OrderConfirmedPage() {
               Open WhatsApp Chat
             </a>
             <p className="text-gray-400 text-xs mt-3">
-              WhatsApp: +1 334 446 8194
+              WhatsApp: +1 (912) 484-4702
             </p>
           </div>
         )}

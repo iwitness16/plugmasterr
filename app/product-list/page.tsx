@@ -3,28 +3,28 @@ import { Suspense } from 'react';
 import ProductListContent from './ProductListContent';
 
 export const metadata: Metadata = {
-  title: 'Buy Fake IDs — All US States, Canada & UK | IDCARDSMEN',
+  title: 'Buy Fake IDs — All US States, Canada & UK | IDPlugSource',
   description:
-    'Buy fake IDs online from IDCARDSMEN. Scannable fake IDs for all US states, Canada provinces, and UK cities. Real DMV templates, UV hologram, barcode. From $65.',
+    'Buy fake IDs online from IDPlugSource. Scannable fake IDs for all US states, Canada provinces, and UK cities. Real DMV templates, UV hologram, barcode. From $65.',
   keywords:
     'buy fake ids, fake ids buying, order fake ids, fake id for sale, id cards fake, fake ids that scan, fake state id, scannable fake id, get fake id',
   openGraph: {
-    title: 'Buy Fake IDs — All US States, Canada & UK | IDCARDSMEN',
+    title: 'Buy Fake IDs — All US States, Canada & UK | IDPlugSource',
     description:
       'Browse and buy fake IDs for all US states, Canada and UK. Scannable, UV hologram, real DMV templates. Starting from $65.',
-    url: 'https://idcardsmen.com/product-list',
-    siteName: 'IDCARDSMEN',
-    images: [{ url: 'https://idcardsmen.com/images/bgimg.png', width: 1200, height: 630, alt: 'Buy Fake IDs - IDCARDSMEN Product List' }],
+    url: 'https://IDPlugSource.com/product-list',
+    siteName: 'IDPlugSource',
+    images: [{ url: 'https://IDPlugSource.com/images/bgimg.png', width: 1200, height: 630, alt: 'Buy Fake IDs - IDPlugSource Product List' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Buy Fake IDs — All US States, Canada & UK | IDCARDSMEN',
+    title: 'Buy Fake IDs — All US States, Canada & UK | IDPlugSource',
     description: 'Browse and buy fake IDs for all US states, Canada and UK. Scannable, UV hologram, real DMV templates.',
-    images: ['https://idcardsmen.com/images/bgimg.png'],
+    images: ['https://IDPlugSource.com/images/bgimg.png'],
   },
   alternates: {
-    canonical: 'https://idcardsmen.com/product-list',
+    canonical: 'https://IDPlugSource.com/product-list',
   },
 };
 

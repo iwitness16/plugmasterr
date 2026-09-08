@@ -2,28 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Best States for Fake IDs in 2026 — Full Guide | IDCARDSMEN',
+  title: 'Best States for Fake IDs in 2026 — Full Guide | IDPlugSource',
   description:
     'Which are the best states for fake IDs in 2026? We break down the top US states by template quality, security features, and scannability. Buy yours from $65.',
   keywords:
     'best states for fake ids, best state for fake id, best fake id states, best state to get a fake id, good states for fake ids, best states to get fake ids from, easiest fake id',
   openGraph: {
-    title: 'Best States for Fake IDs in 2026 — Full Guide | IDCARDSMEN',
+    title: 'Best States for Fake IDs in 2026 — Full Guide | IDPlugSource',
     description:
       'Which US states make the best fake IDs? Full breakdown by template quality, UV features, and scanning reliability. Order from $65.',
-    url: 'https://idcardsmen.com/best-states-for-fake-ids',
-    siteName: 'IDCARDSMEN',
-    images: [{ url: 'https://idcardsmen.com/images/idfront.jpg', width: 1200, height: 630, alt: 'Best States for Fake IDs - IDCARDSMEN' }],
+    url: 'https://IDPlugSource.com/best-states-for-fake-ids',
+    siteName: 'IDPlugSource',
+    images: [{ url: 'https://IDPlugSource.com/images/idfront.jpg', width: 1200, height: 630, alt: 'Best States for Fake IDs - IDPlugSource' }],
     type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best States for Fake IDs in 2026 | IDCARDSMEN',
+    title: 'Best States for Fake IDs in 2026 | IDPlugSource',
     description: 'Full breakdown of the best US states for fake IDs — quality, UV features, scanning.',
-    images: ['https://idcardsmen.com/images/idfront.jpg'],
+    images: ['https://IDPlugSource.com/images/idfront.jpg'],
   },
   alternates: {
-    canonical: 'https://idcardsmen.com/best-states-for-fake-ids',
+    canonical: 'https://IDPlugSource.com/best-states-for-fake-ids',
   },
 };
 
@@ -121,9 +121,9 @@ export default function BestStatesPage() {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-3">
-              <img src="/images/logo.jpg" alt="IDCARDSMEN Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
+              <img src="/images/logo.jpg" alt="IDPlugSource Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-lg" />
               <div className="flex flex-col">
-                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDCARDSMEN</div>
+                <div className="text-yellow-green text-base sm:text-lg font-display font-semibold tracking-tight">IDPlugSource</div>
                 <div className="text-xs text-gray-400 hidden sm:block">Scannable UV hologram</div>
               </div>
             </Link>
@@ -176,7 +176,7 @@ export default function BestStatesPage() {
               The answer depends on where you plan to use it. A California ID might be perfect in New York but draw more scrutiny in Los Angeles. An Ohio ID might fly under the radar everywhere except Ohio itself.
             </p>
             <p className="text-gray-700">
-              At IDCARDSMEN, we produce <Link href="/product-info" className="text-yellow-green hover:underline">scannable fake IDs</Link> for all major US states using real DMV templates, UV hologram printing, and 2D barcodes. Below are our top picks based on years of template experience.
+              At IDPlugSource, we produce <Link href="/product-info" className="text-yellow-green hover:underline">scannable fake IDs</Link> for all major US states using real DMV templates, UV hologram printing, and 2D barcodes. Below are our top picks based on years of template experience.
             </p>
           </section>
 
@@ -297,7 +297,7 @@ export default function BestStatesPage() {
               <Link key={href} href={href} className="text-gray-400 hover:text-yellow-green text-xs">{label}</Link>
             ))}
           </div>
-          <p className="text-gray-600 text-xs">Copyright {'\u00A9'} 2026, idcardsmen, All Rights Reserved</p>
+          <p className="text-gray-600 text-xs">Copyright {'\u00A9'} 2026, IDPlugSource, All Rights Reserved</p>
         </div>
       </footer>
     </div>

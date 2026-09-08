@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node node_modules/next/dist/bin/next dev",
+    "build": "node node_modules/next/dist/bin/next build",
+    "start": "node node_modules/next/dist/bin/next start",
     "lint": "eslint",
-    "deploy": "npm run build && npx firebase deploy",
-    "deploy:hosting": "npm run build && npx firebase deploy --only hosting"
+    "deploy": "node node_modules/next/dist/bin/next build && npx firebase deploy",
+    "deploy:hosting": "node node_modules/next/dist/bin/next build && npx firebase deploy --only hosting"
   },
   "dependencies": {
     "firebase": "^11.10.0",
@@ -16,7 +16,8 @@
     "next": "16.0.10",
     "nodemailer": "^8.0.1",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "resend": "^4.5.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -24,6 +25,7 @@
     "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "baseline-browser-mapping": "^2.11.21",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "firebase-tools": "^15.2.1",

@@ -4,21 +4,21 @@ import "./globals.css";
 import FontLoader from "../components/FontLoader";
 import WhatsAppWidget from "../components/WhatsAppWidget";
 
-const BASE_URL = "https://idcardsmen.com";
+const BASE_URL = "https://idplugsource.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDCARDSMEN",
-    template: "%s | IDCARDSMEN",
+    default: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDPlugSource",
+    template: "%s | IDPlugSource",
   },
   description:
-    "IDCARDSMEN is the best fake ID maker online. Buy scannable fake IDs with UV hologram, barcode, and real DMV templates. All US states, Canada & UK. Fast delivery from $65.",
+    "IDPlugSource is the best fake ID maker online. Buy scannable fake IDs with UV hologram, barcode, and real DMV templates. All US states, Canada & UK. Fast delivery from $65.",
   keywords:
     "best fake id, buy fake ids, scannable fake id, best fake id websites, fake id for sale, order fake id, fake ids that scan",
-  authors: [{ name: "IDCARDSMEN" }],
-  creator: "IDCARDSMEN",
-  publisher: "IDCARDSMEN",
+  authors: [{ name: "IDPlugSource" }],
+  creator: "IDPlugSource",
+  publisher: "IDPlugSource",
   robots: {
     index: true,
     follow: true,
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "IDCARDSMEN",
-    title: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDCARDSMEN",
+    siteName: "IDPlugSource",
+    title: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDPlugSource",
     description:
       "Buy the best fake IDs online — scannable, UV hologram, real DMV templates. All US states, Canada & UK. Starting from $65.",
     images: [
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/images/idfront.jpg`,
         width: 1200,
         height: 630,
-        alt: "Best Fake ID - Scannable Fake ID Card - IDCARDSMEN",
+        alt: "Best Fake ID - Scannable Fake ID Card - IDPlugSource",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDCARDSMEN",
+    title: "Best Fake ID | #1 Scannable Fake IDs with Hologram & UV | IDPlugSource",
     description:
       "Buy the best fake IDs online — scannable, UV hologram, real DMV templates. All US states, Canada & UK.",
     images: [`${BASE_URL}/images/idfront.jpg`],
@@ -78,9 +78,9 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "IDCARDSMEN",
+  name: "IDPlugSource",
   description:
-    "IDCARDSMEN is the best fake ID maker offering premium scannable fake IDs with UV hologram, barcode, and real DMV templates for all US states, Canada and UK.",
+    "IDPlugSource is the best fake ID maker offering premium scannable fake IDs with UV hologram, barcode, and real DMV templates for all US states, Canada and UK.",
   url: BASE_URL,
   logo: `${BASE_URL}/images/logo.jpg`,
   image: `${BASE_URL}/images/idfront.jpg`,
@@ -98,8 +98,8 @@ const jsonLd = {
     availableLanguage: "English",
   },
   sameAs: [
-    "https://wa.me/13344468194",
-    "https://t.me/IDCARDSMEN01",
+    "https://wa.me/19124844702",
+    "https://t.me/fakeidplugsource10",
   ],
 };
 
