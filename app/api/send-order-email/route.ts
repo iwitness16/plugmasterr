@@ -174,11 +174,11 @@ export async function POST(request: NextRequest) {
         port,
         secure,
         auth: { user, pass },
-        family: 4,
+        family: 4 as 4,
         connectionTimeout: 12000,
         greetingTimeout: 12000,
         socketTimeout: 20000,
-      });
+      } as nodemailer.TransportOptions);
       const jobs: Promise<any>[] = [t.sendMail(adminOpts)];
       if (customerOpts) jobs.push(t.sendMail(customerOpts));
       await Promise.all(jobs);
