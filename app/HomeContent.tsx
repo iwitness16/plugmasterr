@@ -167,7 +167,7 @@ export default function HomeContent() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-xl sm:text-2xl font-display font-semibold text-center mb-3 sm:mb-4">Best Fake ID / Fake Driver License — Buy Fake IDs by State</h2>
           <Link href="/product-list" className="block text-center text-yellow-green mb-8 sm:mb-12 cursor-pointer hover:underline">View more &gt;</Link>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
             {[
               {
                 label: 'USA',
@@ -176,7 +176,6 @@ export default function HomeContent() {
                 alt: 'Best fake USA ID - scannable US driver license',
                 href: '/product-list?cat=USA+ID',
                 flag: '🇺🇸',
-                count: 37,
                 desc: 'All US states with holograms & UV features',
               },
               {
@@ -186,7 +185,6 @@ export default function HomeContent() {
                 alt: 'Best fake UK ID - scannable UK driving licence',
                 href: '/product-list?cat=UK+ID',
                 flag: '🇬🇧',
-                count: 10,
                 desc: 'UK driving licences with UV features',
               },
               {
@@ -196,8 +194,34 @@ export default function HomeContent() {
                 alt: 'Best fake Canada ID - scannable Canadian driver licence',
                 href: '/product-list?cat=CANADA+ID',
                 flag: '🇨🇦',
-                count: 3,
                 desc: 'Canadian provincial IDs with holograms',
+              },
+              {
+                label: 'EUROPE',
+                subtitle: 'Europe ID',
+                image: '/images/maintemplate.png',
+                alt: 'Best fake European ID - Germany, France, Netherlands, Ireland',
+                href: '/product-list?cat=EUROPE+ID',
+                flag: '🇪🇺',
+                desc: 'Germany, France, Netherlands, Ireland',
+              },
+              {
+                label: 'AUSTRALIA',
+                subtitle: 'Australia ID',
+                image: '/images/maintemplate.png',
+                alt: 'Best fake Australia driver licence',
+                href: '/product-list?cat=AUSTRALIA+ID',
+                flag: '🇦🇺',
+                desc: 'Australian driver licences',
+              },
+              {
+                label: 'SOUTH AMERICA',
+                subtitle: 'South America ID',
+                image: '/images/maintemplate.png',
+                alt: 'Best fake South America ID - Argentina DNI',
+                href: '/product-list?cat=SOUTH+AMERICA+ID',
+                flag: '🌎',
+                desc: 'Argentina DNI national identity cards',
               },
               {
                 label: 'SSN',
@@ -206,7 +230,6 @@ export default function HomeContent() {
                 alt: 'Fake Social Security Number card - SSN replica',
                 href: '/product-list?cat=SSN',
                 flag: '🪪',
-                count: 1,
                 desc: 'Replica Social Security card',
               },
             ].map((cat, idx) => (

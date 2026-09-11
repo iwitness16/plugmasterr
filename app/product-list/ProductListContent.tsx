@@ -35,6 +35,15 @@ const PRODUCT_IMAGES: Record<string, string> = {
   'Birmingham': '/images/uk.jpg', 'Manchester': '/images/uk.jpg',
   'Liverpool': '/images/uk.jpg', 'Leeds': '/images/uk.jpg', 'Bristol': '/images/uk.jpg',
   'SSN': '/images/ssn.png',
+  // Europe
+  'Germany': '/images/germany.jpg',
+  'Netherlands': '/images/netherlands.jpg',
+  'France': '/images/france.jpg',
+  'Ireland': '/images/ireland.jpg',
+  // Oceania
+  'Australia': '/images/australia.jpg',
+  // South America
+  'Argentina': '/images/argentina.jpg',
 };
 
 function getProductImage(name: string, category: string): string {
@@ -46,7 +55,7 @@ function getProductImage(name: string, category: string): string {
 // ─── Product data ─────────────────────────────────────────────────────────────
 interface Product {
   id: string; name: string;
-  category: 'USA ID' | 'CANADA ID' | 'UK ID' | 'SSN';
+  category: 'USA ID' | 'CANADA ID' | 'UK ID' | 'SSN' | 'EUROPE ID' | 'AUSTRALIA ID' | 'SOUTH AMERICA ID';
   price: number; image: string;
 }
 
@@ -102,6 +111,15 @@ const rawProducts: Omit<Product, 'image'>[] = [
   { id: 'leeds', name: 'Leeds', category: 'UK ID', price: 90 },
   { id: 'bristol', name: 'Bristol', category: 'UK ID', price: 90 },
   { id: 'ssn', name: 'SSN', category: 'SSN', price: 100 },
+  // Europe
+  { id: 'germany', name: 'Germany', category: 'EUROPE ID', price: 100 },
+  { id: 'netherlands', name: 'Netherlands', category: 'EUROPE ID', price: 100 },
+  { id: 'france', name: 'France', category: 'EUROPE ID', price: 100 },
+  { id: 'ireland', name: 'Ireland', category: 'EUROPE ID', price: 100 },
+  // Oceania
+  { id: 'australia', name: 'Australia', category: 'AUSTRALIA ID', price: 100 },
+  // South America
+  { id: 'argentina', name: 'Argentina', category: 'SOUTH AMERICA ID', price: 100 },
 ];
 
 const allProducts: Product[] = rawProducts
@@ -113,6 +131,9 @@ const CATEGORIES = [
   { key: 'USA ID', abbr: 'US', label: 'USA ID', flag: '🇺🇸', desc: 'All US states with holograms and UV features' },
   { key: 'UK ID', abbr: 'UK', label: 'UK ID', flag: '🇬🇧', desc: 'UK driving licences with UV features' },
   { key: 'CANADA ID', abbr: 'CA', label: 'Canada ID', flag: '🇨🇦', desc: 'Canadian provincial IDs with holograms' },
+  { key: 'EUROPE ID', abbr: 'EU', label: 'Europe ID', flag: '🇪🇺', desc: 'European national IDs and driver licences' },
+  { key: 'AUSTRALIA ID', abbr: 'AU', label: 'Australia ID', flag: '🇦🇺', desc: 'Australian driver licences' },
+  { key: 'SOUTH AMERICA ID', abbr: 'SA', label: 'South America ID', flag: '🌎', desc: 'South American national identity cards' },
   { key: 'SSN', abbr: 'SSN', label: 'Social Security', flag: '🪪', desc: 'Replica Social Security card' },
 ] as const;
 

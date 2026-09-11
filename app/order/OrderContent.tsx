@@ -75,8 +75,8 @@ function OrderPageContent() {
     'Florida': '/images/florida.jpg',
     'Florida Motorcycle': '/images/florida.jpg',
     'Georgia': '/images/georgia.jpg',
-    'Illinois': '/images/ordertemp.png',
-    'Illinois CDL': '/images/ordertemp.png',
+    'Illinois': '/images/maintemplate.png',
+    'Illinois CDL': '/images/maintemplate.png',
     'Indiana': '/images/indiana.jpg',
     'Kansas': '/images/kansas.jpg',
     'Maryland': '/images/maryland.jpg',
@@ -118,6 +118,15 @@ function OrderPageContent() {
     'Leeds': '/images/uk.jpg',
     'Bristol': '/images/uk.jpg',
     'SSN': '/images/ssn.png',
+    // Europe
+    'Germany': '/images/germany.jpg',
+    'Netherlands': '/images/netherlands.jpg',
+    'France': '/images/france.jpg',
+    'Ireland': '/images/ireland.jpg',
+    // Oceania
+    'Australia': '/images/australia.jpg',
+    // South America
+    'Argentina': '/images/argentina.jpg',
   };
 
   // Update main product image based on selected product
